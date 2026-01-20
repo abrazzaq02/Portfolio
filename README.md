@@ -4,7 +4,7 @@ I actively explore modern design concepts and core web technologies to expand my
 My approach reflects discipline, creativity, and a commitment to continuous improvement.
 I am driven to evolve into a skilled developer capable of building impactful digital experiences.
 
-Live Demo - https://github.com/abrazzaq02/Portfolio.git
+Live Demo - https://abrazzaq02.github.io/Portfolio/
 
 # Join Us
 
