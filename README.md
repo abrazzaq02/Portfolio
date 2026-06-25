@@ -6,7 +6,7 @@ I am driven to evolve into a skilled developer capable of building impactful dig
 
 Live Demo - https://abrazzaq02.github.io/Portfolio/
 
-# Join Us why
+# Join Us 
 
 GitHub-https://github.com/abrazzaq02
 
