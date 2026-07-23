@@ -62,6 +62,9 @@
                 <div class="hero-buttons">
                     <a href="#contact" class="btn btn-primary">Get In Touch</a>
                     <a href="#projects" class="btn btn-secondary">View My Work</a>
+                    <a href="assets/Abdul_Razaque_CV.pdf" class="btn btn-secondary" download>
+                        <i class='bx bx-download'></i> Download CV
+                    </a>
                 </div>
                 <div class="social-links">
                     <a href="https://github.com" target="_blank" class="social-icon" title="GitHub">
@@ -349,7 +352,7 @@
                             <h3>AI Engineer Student</h3>
                             <span class="timeline-date">2023 - Present</span>
                         </div>
-                        <p class="timeline-org">University of Engineering & Technology</p>
+                        <p class="timeline-org">Aror University Sukkur</p>
                         <p>Pursuing degree in Artificial Intelligence with focus on Machine Learning, Deep Learning, and GenAI applications. CGPA: 3.2</p>
                     </div>
                 </div>
@@ -621,6 +624,38 @@
         </div>
     </footer>
 
+    <!-- Chatbot Widget -->
+    <div class="chatbot-widget">
+        <button class="chatbot-toggle" id="chatbotToggle" aria-label="Open chat">
+            <i class='bx bx-message-rounded-dots'></i>
+        </button>
+
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <div class="chatbot-header-info">
+                    <i class='bx bx-bot'></i>
+                    <div>
+                        <h4>Abdul Razaque's Assistant</h4>
+                        <span class="chatbot-status">Online</span>
+                    </div>
+                </div>
+                <button class="chatbot-close" id="chatbotClose" aria-label="Close chat">
+                    <i class='bx bx-x'></i>
+                </button>
+            </div>
+
+            <div class="chatbot-messages" id="chatbotMessages"></div>
+
+            <form class="chatbot-input-area" id="chatbotForm">
+                <input type="text" id="chatbotInput" placeholder="Type a message..." autocomplete="off" required>
+                <button type="submit" aria-label="Send message">
+                    <i class='bx bx-send'></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
     <script src="main.js"></script>
+    <script src="chatbot.js"></script>
 </body>
 </html>
