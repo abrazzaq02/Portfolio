@@ -1,0 +1,103 @@
+/* Certification cards — theme-matched, responsive, and isolated from existing styles. */
+.certifications {
+    background: linear-gradient(135deg, rgba(10, 14, 39, 0.72) 0%, rgba(26, 31, 58, 0.62) 100%);
+}
+
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+    gap: 1.5rem;
+}
+
+.certifications .cert-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    min-width: 0;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    background: rgba(15, 23, 42, 0.72);
+    border: 1px solid rgba(0, 212, 255, 0.18);
+    border-radius: 18px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certifications .cert-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 212, 255, 0.48);
+    box-shadow: 0 22px 45px rgba(0, 212, 255, 0.12);
+}
+
+.certifications .cert-icon {
+    flex: 0 0 52px;
+    margin: 0;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(168, 85, 247, 0.28));
+    border: 1px solid rgba(0, 212, 255, 0.22);
+    color: var(--primary-color);
+}
+
+.cert-card-content {
+    min-width: 0;
+}
+
+.cert-eyebrow {
+    margin: 0 0 0.45rem;
+    color: var(--primary-color);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.certifications .cert-card h3 {
+    margin: 0 0 0.7rem;
+    font-size: 1.2rem;
+    line-height: 1.4;
+}
+
+.certifications .cert-card .cert-description {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    overflow-wrap: anywhere;
+}
+
+.cert-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+    padding: 0.65rem 1rem;
+    border: 1px solid rgba(0, 212, 255, 0.35);
+    border-radius: 999px;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.cert-link:hover,
+.cert-link:focus-visible {
+    background: rgba(0, 212, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.cert-link:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
+}
+
+@media (max-width: 520px) {
+    .certifications .cert-card {
+        flex-direction: column;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .certifications .cert-card,
+    .cert-link {
+        transition: none;
+    }
+}
