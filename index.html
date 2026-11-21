@@ -1,202 +1,1724 @@
 <!DOCTYPE html>
-
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Abdul Razaque — AI &amp; ML Developer</title>
-<link href="style.css" rel="stylesheet"/>
-<link href="certifications.css" rel="stylesheet"/>
-<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080706" id="metaThemeColor">
+<meta name="description" content="Abdul Razaque — AI &amp; Machine Learning Developer. Projects, skills, experience, and contact.">
+<title>Abdul Razaque — AI / ML Developer</title>
 
-<meta content="#071426" name="theme-color"/><meta content="Abdul Razaque — Artificial Intelligence student, machine learning developer and software builder. Explore my projects, certifications, and experience." name="description"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="experience.css" rel="stylesheet"/><link href="luxury.css" rel="stylesheet"/><link href="researcher.css" rel="stylesheet"/></head>
-<body>
-<!-- Custom Cursor -->
-<div class="cursor"></div>
-<div class="cursor-border"></div>
-<div class="cursor-text"></div>
-<!-- Animated Background Elements -->
-<div class="animated-bg"><canvas aria-hidden="true" id="space-canvas"></canvas><div class="aurora aurora-one"></div><div class="aurora aurora-two"></div><div class="aurora aurora-three"></div><div class="perspective-grid"></div></div>
-<!-- Navigation Header -->
-<header class="header">
-<div class="header-container">
-<div class="logo">
-<span class="logo-icon">◆</span>
-<span class="logo-text">Abdul Razaque</span>
+<!-- =========================================================================
+     QUICK CUSTOMIZATION GUIDE (Everything lives in this single HTML file)
+     =========================================================================
+     1. YOUR NAME      -> Search for: [YOUR FULL NAME]  (hero <h1>, navbar, <title>)
+     2. YOUR TITLE     -> Search for: [YOUR TITLE]      (tagline below your name)
+     3. YOUR PHOTO     -> Put your photo in an "images" folder next to this file,
+                          then update src="images/About.png" (search: [YOUR IMAGE FILE]).
+     4. YOUR AUDIO     -> Create a "music" folder next to this file and place your
+                          licensed track at: music/gangster-beat.mp3
+                          (search: [YOUR AUDIO FILE]).
+     5. YOUR LINKS     -> Update the href="..." URLs in hero social, projects, and contact.
+     ========================================================================= -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+
+<style>
+/* =========================================================================
+   1. THEME TOKENS — Gangster Mode (default) & Light Mode
+   ========================================================================= */
+:root[data-theme="dark"]{
+  --bg:#080706;
+  --bg-2:#100c0c;
+  --panel:rgba(20,16,15,.82);
+  --panel-solid:#14100f;
+  --text:#f6f0e6;
+  --muted:#ada297;
+  --faint:#756b64;
+  --gold:#d4af37;
+  --gold-soft:#f5d585;
+  --red:#8b1420;
+  --red-live:#e02b3a;
+  --line:rgba(212,175,55,.26);
+  --glass:rgba(255,255,255,.035);
+  --shadow:rgba(0,0,0,.7);
+  --grain:.15;
+  --smoke:.6;
+}
+:root[data-theme="light"]{
+  --bg:#f4efe5;
+  --bg-2:#e9decb;
+  --panel:rgba(255,252,246,.86);
+  --panel-solid:#fffcf6;
+  --text:#191512;
+  --muted:#5c5249;
+  --faint:#85796d;
+  --gold:#9a7213;
+  --gold-soft:#c59824;
+  --red:#8b1420;
+  --red-live:#b91f2c;
+  --line:rgba(130,94,18,.28);
+  --glass:rgba(255,255,255,.64);
+  --shadow:rgba(60,42,16,.16);
+  --grain:.08;
+  --smoke:.22;
+}
+:root{
+  --ease:cubic-bezier(.22,.8,.24,1);
+  --max:1180px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'DM Sans',system-ui,-apple-system,sans-serif;
+  font-size:16px;
+  line-height:1.7;
+  overflow-x:hidden;
+  transition:background .65s var(--ease),color .65s var(--ease);
+}
+body.locked{overflow:hidden}
+body.custom-cursor,body.custom-cursor a,body.custom-cursor button,body.custom-cursor input[type="range"]{cursor:none}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+button{cursor:pointer;background:none;border:0;color:inherit}
+::selection{background:var(--gold);color:#0b0908}
+:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+.skip-link{
+  position:absolute;left:-999px;top:10px;z-index:10000;
+  background:var(--gold);color:#0a0808;padding:10px 18px;font-family:'Oswald',sans-serif;
+}
+.skip-link:focus{left:10px}
+.svgs-only{position:absolute;width:0;height:0;overflow:hidden}
+
+/* =========================================================================
+   2. ATMOSPHERE — Spotlight, Smoke, Grain/Noise Texture, 3D Sculpture
+   ========================================================================= */
+.atmosphere{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.atmosphere::before{
+  content:"";position:absolute;left:50%;top:-34vh;width:135vw;height:105vh;
+  transform:translateX(-50%);
+  background:radial-gradient(ellipse at 50% 0%,rgba(212,175,55,.15),transparent 62%);
+  opacity:var(--smoke);transition:opacity .65s var(--ease);
+}
+.atmosphere::after{
+  content:"";position:absolute;inset:auto 0 -22vh;height:58vh;
+  background:radial-gradient(ellipse at 50% 100%,rgba(139,20,32,.32),transparent 68%);
+  opacity:var(--smoke);transition:opacity .65s var(--ease);
+}
+.spotlight{
+  position:absolute;inset:0;
+  background:radial-gradient(640px circle at calc((var(--px,0)*18% + 50%)) calc((var(--py,0)*15% + 36%)),rgba(212,175,55,.09),transparent 60%);
+  opacity:var(--smoke);transition:opacity .65s var(--ease);
+}
+.smoke{
+  position:absolute;border-radius:50%;filter:blur(75px);
+  opacity:calc(var(--smoke)*.44);
+  background:radial-gradient(circle,rgba(212,175,55,.24),transparent 70%);
+  animation:drift 22s ease-in-out infinite alternate;
+  transition:opacity .65s var(--ease);
+}
+.smoke.a{width:54vw;height:54vw;left:-14vw;top:6vh}
+.smoke.b{
+  width:48vw;height:48vw;right:-12vw;top:40vh;animation-delay:-9s;
+  background:radial-gradient(circle,rgba(139,20,32,.42),transparent 70%);
+}
+.smoke.c{width:38vw;height:38vw;left:34vw;bottom:-12vh;animation-duration:28s;animation-delay:-4s}
+@keyframes drift{
+  from{transform:translate3d(-4%,2%,0) scale(.92)}
+  to{transform:translate3d(7%,-6%,0) scale(1.12)}
+}
+.grain{
+  position:fixed;inset:-60%;z-index:90;pointer-events:none;opacity:var(--grain);
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+  animation:grainShift .6s steps(3) infinite;mix-blend-mode:overlay;transition:opacity .65s var(--ease);
+}
+@keyframes grainShift{
+  0%{transform:translate(0,0)}
+  33%{transform:translate(-3%,2%)}
+  66%{transform:translate(2%,-3%)}
+  100%{transform:translate(0,0)}
+}
+
+/* Slowly rotating CSS 3D geometry in the background */
+.rotator{
+  position:fixed;right:-5vw;top:15vh;width:min(46vw,520px);aspect-ratio:1;z-index:0;
+  pointer-events:none;perspective:1100px;opacity:.45;
+  transform:translate3d(calc(var(--px,0)*-26px),calc(var(--py,0)*-20px),0);
+  transform-style:preserve-3d;
+}
+.ring3d{
+  position:absolute;inset:8%;border:1px solid var(--gold);border-radius:50%;
+  transform-style:preserve-3d;opacity:.72;
+  animation:orbitSpin 26s linear infinite;
+}
+.ring3d::before,.ring3d::after{
+  content:"";position:absolute;inset:-1px;border-radius:50%;
+  border:1px dashed var(--red-live);opacity:.65;
+}
+.ring3d::before{transform:rotateX(68deg)}
+.ring3d::after{transform:rotateY(72deg)}
+.ring3d.two{
+  inset:22%;border-color:var(--red-live);
+  animation:orbitSpinRev 19s linear infinite;
+}
+@keyframes orbitSpin{
+  from{transform:rotateX(62deg) rotateY(12deg) rotateZ(0deg)}
+  to{transform:rotateX(62deg) rotateY(12deg) rotateZ(360deg)}
+}
+@keyframes orbitSpinRev{
+  from{transform:rotateX(26deg) rotateY(-48deg) rotateZ(360deg)}
+  to{transform:rotateX(26deg) rotateY(-48deg) rotateZ(0deg)}
+}
+.cube3d{
+  position:absolute;left:50%;top:50%;width:116px;height:116px;margin:-58px;
+  transform-style:preserve-3d;
+}
+.cube3d .face{
+  position:absolute;inset:0;border:1px solid var(--gold);
+  background:linear-gradient(135deg,rgba(212,175,55,.15),rgba(139,20,32,.12));
+  box-shadow:inset 0 0 28px rgba(212,175,55,.11);
+}
+.cube3d .f1{transform:translateZ(58px)}
+.cube3d .f2{transform:rotateY(180deg) translateZ(58px)}
+.cube3d .f3{transform:rotateY(90deg) translateZ(58px)}
+.cube3d .f4{transform:rotateY(-90deg) translateZ(58px)}
+.cube3d .f5{transform:rotateX(90deg) translateZ(58px)}
+.cube3d .f6{transform:rotateX(-90deg) translateZ(58px)}
+
+/* =========================================================================
+   3. LOADER + ENTER / PLAY MUSIC GATE
+   ========================================================================= */
+#loader,#entry{
+  position:fixed;inset:0;display:grid;place-items:center;
+  background:radial-gradient(circle at 50% 45%,#1c1312 0%,#080706 68%);
+  transition:opacity .7s var(--ease),visibility .7s;
+}
+#loader{z-index:2020}
+#entry{z-index:2000}
+#loader.done,#entry.done{opacity:0;visibility:hidden;pointer-events:none}
+.load-box{text-align:center;width:min(360px,82vw)}
+.load-mark{
+  font-family:'Bebas Neue',sans-serif;font-size:98px;line-height:1;letter-spacing:5px;
+  color:transparent;-webkit-text-stroke:1.2px var(--gold);
+  text-shadow:0 0 36px rgba(212,175,55,.32);
+}
+.load-text{
+  font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.42em;
+  color:#a89d93;margin:8px 0 26px;text-transform:uppercase;
+}
+.load-track{height:3px;background:rgba(212,175,55,.16);overflow:hidden;border-radius:2px}
+.load-fill{
+  height:100%;width:0;
+  background:linear-gradient(90deg,#e02b3a,#f5d585);
+  box-shadow:0 0 16px #d4af37;
+}
+.load-pct{
+  display:flex;justify-content:space-between;font-family:'Oswald',sans-serif;
+  font-size:11px;letter-spacing:.22em;color:#d4af37;margin-top:10px;
+}
+.entry-inner{text-align:center;padding:24px;max-width:620px;color:#f6f0e6}
+.entry-kicker{
+  font-family:'Oswald',sans-serif;letter-spacing:.42em;font-size:12px;
+  color:#e02b3a;text-transform:uppercase;display:block;
+}
+.entry-title{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(4.2rem,14vw,9.2rem);
+  line-height:.9;margin:10px 0 6px;letter-spacing:4px;
+  background:linear-gradient(180deg,#f5d585,#d4af37 55%,#7c5c12);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.entry-sub{color:#b0a59b;max-width:460px;margin:0 auto 34px;font-size:14px}
+.entry-btn{
+  font-family:'Oswald',sans-serif;font-size:15px;letter-spacing:.28em;text-transform:uppercase;
+  padding:17px 46px;border:1px solid #d4af37;color:#d4af37;position:relative;overflow:hidden;
+  background:rgba(212,175,55,.06);transition:color .35s,box-shadow .35s,transform .35s;
+}
+.entry-btn::before{
+  content:"";position:absolute;inset:0;background:#d4af37;
+  transform:translateY(102%);transition:transform .4s var(--ease);z-index:0;
+}
+.entry-btn:hover{color:#0a0808;transform:translateY(-3px);box-shadow:0 14px 42px rgba(212,175,55,.3)}
+.entry-btn:hover::before{transform:translateY(0)}
+.entry-btn span{position:relative;z-index:1}
+.entry-skip{
+  display:block;margin:18px auto 0;color:#8a7f76;font-size:12px;letter-spacing:.1em;
+  border-bottom:1px solid transparent;padding-bottom:2px;transition:color .3s,border-color .3s;
+}
+.entry-skip:hover{color:#d4af37;border-color:#d4af37}
+
+/* =========================================================================
+   4. CUSTOM CURSOR WITH TRAILING EFFECT (hidden on touch devices)
+   ========================================================================= */
+.cursor-dot,.cursor-ring,.cursor-trail{
+  position:fixed;top:0;left:0;pointer-events:none;z-index:3000;border-radius:50%;
+  opacity:0;transition:opacity .25s ease;
+}
+body.cursor-ready .cursor-dot,
+body.cursor-ready .cursor-ring{opacity:1}
+body.cursor-ready .cursor-trail{opacity:.38}
+.cursor-dot{
+  width:7px;height:7px;background:var(--gold-soft);
+  box-shadow:0 0 14px var(--gold);transform:translate(-50%,-50%);
+}
+.cursor-ring{
+  width:38px;height:38px;border:1px solid rgba(212,175,55,.78);
+  transform:translate(-50%,-50%);
+  transition:width .28s,height .28s,border-color .28s,background .28s,opacity .25s;
+}
+.cursor-ring.hot{width:58px;height:58px;border-color:var(--red-live);background:rgba(224,43,58,.1)}
+.cursor-trail{
+  width:9px;height:9px;
+  background:linear-gradient(135deg,var(--gold),var(--red-live));
+  filter:blur(2px);transform:translate(-50%,-50%);
+}
+@media (hover:none),(pointer:coarse){
+  .cursor-dot,.cursor-ring,.cursor-trail{display:none!important}
+}
+
+/* =========================================================================
+   5. NAVBAR — Smooth Scroll + Active Link Underline + Mode Toggle
+   ========================================================================= */
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:500;height:78px;display:flex;align-items:center;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 90%,transparent),transparent);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid transparent;transition:border-color .4s,background .65s var(--ease);
+}
+.site-header.stuck{
+  border-bottom-color:var(--line);
+  background:color-mix(in srgb,var(--bg) 88%,transparent);
+}
+.nav-inner{
+  width:min(var(--max),calc(100% - 48px));margin:auto;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.logo{
+  font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:2px;line-height:1;
+  color:var(--text);display:flex;align-items:center;gap:10px;
+}
+.logo b{color:var(--gold);font-weight:400;text-shadow:0 0 18px rgba(212,175,55,.5)}
+.logo small{
+  font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:.26em;
+  color:var(--muted);display:block;margin-top:3px;text-transform:uppercase;
+}
+.nav-menu{display:flex;align-items:center;gap:28px}
+.nav-link{
+  font-family:'Oswald',sans-serif;font-size:12px;font-weight:500;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--muted);position:relative;padding:8px 0;
+  transition:color .3s,text-shadow .3s;
+}
+.nav-link::after{
+  content:"";position:absolute;left:0;bottom:2px;width:100%;height:2px;
+  background:linear-gradient(90deg,var(--red-live),var(--gold));
+  transform:scaleX(0);transform-origin:right;transition:transform .38s var(--ease);
+}
+.nav-link:hover,.nav-link.active{color:var(--gold);text-shadow:0 0 14px rgba(212,175,55,.25)}
+.nav-link.active::after,.nav-link:hover::after{transform:scaleX(1);transform-origin:left}
+.nav-actions{display:flex;align-items:center;gap:12px}
+
+.mode-btn{
+  display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 14px;
+  border:1px solid var(--line);border-radius:999px;background:var(--glass);color:var(--gold);
+  font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  transition:transform .35s var(--ease),box-shadow .35s,background .35s,border-color .35s,color .35s;
+}
+.mode-btn:hover{
+  transform:translateY(-2px);border-color:var(--gold);
+  box-shadow:0 0 22px rgba(212,175,55,.28);background:rgba(212,175,55,.12);
+}
+.mode-btn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;flex:0 0 15px}
+:root[data-theme="light"] .theme-sun{display:none}
+:root[data-theme="dark"] .theme-moon{display:none}
+
+.menu-btn{display:none;width:40px;height:40px;border:1px solid var(--line);position:relative}
+.menu-btn span{position:absolute;left:11px;width:18px;height:2px;background:var(--gold);transition:.35s var(--ease)}
+.menu-btn span:nth-child(1){top:13px}
+.menu-btn span:nth-child(2){top:19px}
+.menu-btn span:nth-child(3){top:25px}
+.menu-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.menu-btn.open span:nth-child(2){opacity:0}
+.menu-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* =========================================================================
+   6. SHARED LAYOUT, STAGGERED REVEALS & OFFICIAL BRAND ICON STYLES
+   ========================================================================= */
+main,.site-footer{position:relative;z-index:1}
+.wrap{width:min(var(--max),calc(100% - 48px));margin-inline:auto}
+.section{padding:118px 0;position:relative}
+.section-head{margin-bottom:54px}
+.kicker{
+  font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--red-live);display:block;margin-bottom:10px;
+}
+.section h2{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,6vw,5.1rem);
+  line-height:1;letter-spacing:2px;margin:0 0 14px;
+}
+.rule{width:92px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);position:relative}
+.rule::after{content:"";position:absolute;left:106px;top:0;width:240px;height:1px;background:var(--line)}
+.lead{color:var(--muted);max-width:650px;margin:20px 0 0}
+.gold{color:var(--gold)}
+
+/* Section scroll reveal + staggered child reveal */
+.js .reveal{
+  opacity:0;transform:translateY(42px);filter:blur(5px);
+  transition:opacity .85s var(--ease),transform .85s var(--ease),filter .85s var(--ease);
+}
+.js .reveal.in-view{opacity:1;transform:none;filter:none}
+
+.js .reveal [data-stagger]{
+  opacity:0;transform:translateY(28px);
+  transition:opacity .7s var(--ease),transform .7s var(--ease);
+  transition-delay:var(--stagger-d,0ms);
+}
+.js .reveal.in-view [data-stagger]{opacity:1;transform:none}
+
+/* Letter-by-letter / word-by-word split reveal */
+.split-word{display:inline-block;white-space:nowrap}
+.split-unit{
+  display:inline-block;overflow:hidden;vertical-align:top;
+  padding-bottom:.08em;margin-bottom:-.08em;
+}
+.split-inner{
+  display:inline-block;transform:translateY(115%) rotate(2.5deg);opacity:0;
+  transition:transform .72s var(--ease),opacity .65s ease;
+  transition-delay:calc(var(--i,0)*var(--split-step,22ms));
+}
+.in-view .split-inner{transform:none;opacity:1}
+
+/* Real brand icons — every icon reads its official brand color from --brand */
+.bicon{
+  display:inline-grid;place-items:center;width:100%;height:100%;color:var(--brand);
+  transition:transform .38s cubic-bezier(.34,1.56,.64,1),filter .35s ease;
+  will-change:transform;
+}
+.bicon svg{width:100%;height:100%;fill:currentColor;display:block}
+.bicon[data-brand="github"],.bicon[data-brand="x"]{--brand:#FFFFFF}
+:root[data-theme="light"] .bicon[data-brand="github"],
+:root[data-theme="light"] .bicon[data-brand="x"],
+:root[data-theme="light"] .skill:has([data-brand="github"]),
+:root[data-theme="light"] .social-card:has([data-brand="github"]),
+:root[data-theme="light"] .hero-social a:has([data-brand="github"]){--brand:#181717}
+.bicon[data-brand="instagram"] svg{fill:url(#igGrad)}
+
+.hover-icon:hover .bicon,
+.social-card:hover .bicon,
+.skill:hover .bicon,
+.contact-method:hover .bicon{
+  transform:translateY(-6px) rotate(-10deg) scale(1.18);
+  filter:drop-shadow(0 0 12px var(--brand));
+}
+.hover-icon:hover .bicon[data-brand="instagram"],
+.social-card:hover .bicon[data-brand="instagram"]{
+  filter:drop-shadow(0 0 12px #D62976);
+}
+
+/* =========================================================================
+   7. BUTTONS & INTERACTIVE 3D CARDS
+   ========================================================================= */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:.17em;text-transform:uppercase;
+  padding:14px 28px;border:1px solid var(--gold);position:relative;overflow:hidden;
+  transition:transform .35s var(--ease),box-shadow .35s,color .35s,background .35s,border-color .35s;
+}
+.btn::before{
+  content:"";position:absolute;inset:0;background:var(--gold);
+  transform:translateY(102%);transition:transform .42s var(--ease);z-index:0;
+}
+.btn>*{position:relative;z-index:1}
+.btn:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(212,175,55,.26)}
+.btn:hover::before{transform:translateY(0)}
+.btn-primary{background:var(--gold);color:#0b0908}
+.btn-primary::before{background:var(--gold-soft)}
+.btn-primary:hover{color:#0b0908}
+.btn-outline{color:var(--gold);background:transparent}
+.btn-outline:hover{color:#0b0908}
+
+.card{
+  background:var(--panel);border:1px solid var(--line);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  transition:background .65s var(--ease),border-color .4s,box-shadow .4s;
+}
+.tilt{
+  transform:perspective(960px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--lift,0px));
+  transition:transform .22s ease,box-shadow .35s,border-color .35s,background .65s var(--ease);
+  transform-style:preserve-3d;
+}
+.tilt:hover{
+  --lift:-8px;
+  border-color:rgba(212,175,55,.65);
+  box-shadow:0 24px 52px var(--shadow),0 0 28px rgba(212,175,55,.12);
+}
+
+/* =========================================================================
+   8. HERO — Letter-by-Letter Reveal, Blinking Caret, 3D Hex Portrait
+   ========================================================================= */
+.hero{
+  min-height:100vh;display:grid;grid-template-columns:1.08fr .92fr;
+  align-items:center;gap:34px;padding:126px 0 90px;position:relative;
+}
+.hero-copy{position:relative;z-index:3}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:18px;
+}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+.hero h1{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(4.2rem,9.2vw,8.8rem);
+  line-height:.9;letter-spacing:2px;margin:0;min-height:1.82em;
+  text-shadow:0 0 38px rgba(212,175,55,.22);
+}
+.hero h1 .char{
+  display:inline-block;opacity:0;transform:translateY(26px) rotateX(-64deg);transform-origin:bottom;
+  animation:letterDrop .36s var(--ease) forwards;
+}
+.hero h1 .char-i{
+  display:inline-block;
+  animation:letterFlicker .65s steps(2,end) .12s both;
+}
+@keyframes letterDrop{to{opacity:1;transform:none}}
+@keyframes letterFlicker{
+  0%{opacity:1}
+  22%{opacity:.28;text-shadow:0 0 26px var(--gold-soft)}
+  44%{opacity:1}
+  62%{opacity:.45}
+  82%,100%{opacity:1;text-shadow:0 0 22px rgba(212,175,55,.52)}
+}
+.cursor-caret{
+  display:inline-block;width:.08em;height:.82em;background:var(--gold);
+  margin-left:.08em;vertical-align:-.06em;box-shadow:0 0 14px var(--gold);
+  animation:blink .95s steps(1) infinite;
+}
+@keyframes blink{50%{opacity:0}}
+
+.tagline{
+  font-family:'Oswald',sans-serif;font-size:clamp(1.1rem,2.3vw,1.8rem);
+  letter-spacing:.2em;text-transform:uppercase;margin:18px 0 14px;
+  color:var(--gold-soft);min-height:1.5em;
+}
+.tagline .tw{opacity:0;transform:translateY(16px);display:inline-block}
+.hero.hero-play .tagline .tw{
+  animation:wordUp .55s var(--ease) forwards;
+  animation-delay:var(--d,0ms);
+}
+@keyframes wordUp{to{opacity:1;transform:none}}
+.hero-desc{color:var(--muted);max-width:500px;margin:0 0 32px;font-size:15px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px}
+.hero-social{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero-social a{
+  width:42px;height:42px;border:1px solid var(--line);display:grid;place-items:center;padding:10px;
+  background:var(--glass);transition:border-color .3s,transform .3s,box-shadow .3s,background .3s;
+}
+.hero-social a:hover{
+  transform:translateY(-5px);border-color:var(--brand);
+  box-shadow:0 0 20px color-mix(in srgb,var(--brand) 42%,transparent);
+}
+.scroll-cue{
+  position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
+  font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:.3em;
+  color:var(--faint);text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.scroll-cue i{
+  display:block;width:1px;height:42px;
+  background:linear-gradient(var(--gold),transparent);animation:cue 2s ease-in-out infinite;
+}
+@keyframes cue{50%{transform:scaleY(.4);transform-origin:top}}
+
+/* Portrait with 3D hexagon gold/red glowing frame + floating depth layers */
+.hero-visual{
+  position:relative;height:min(70vh,620px);display:grid;place-items:center;z-index:2;
+  perspective:1150px;transform-style:preserve-3d;
+  transform:translate3d(calc(var(--px,0)*16px),calc(var(--py,0)*12px),0);
+}
+.portrait-wrap{
+  position:relative;width:min(31vw,390px);min-width:270px;aspect-ratio:4/5;
+  transform-style:preserve-3d;
+  transform:perspective(1050px) rotateX(calc(var(--py,0)*-8deg + var(--rx,0deg))) rotateY(calc(var(--px,0)*10deg + var(--ry,0deg))) translateY(var(--lift,0px));
+  transition:transform .2s ease;
+}
+.portrait-wrap:hover{--lift:-6px;box-shadow:none}
+.portrait-halo{
+  position:absolute;inset:-16%;
+  background:radial-gradient(circle,rgba(212,175,55,.28),rgba(139,20,32,.22) 48%,transparent 72%);
+  filter:blur(26px);transform:translateZ(-30px);
+}
+.portrait-backframe{
+  position:absolute;inset:-12px;
+  background:linear-gradient(135deg,rgba(224,43,58,.6),rgba(212,175,55,.4));
+  clip-path:polygon(50% 0,95% 25%,95% 75%,50% 100%,5% 75%,5% 25%);
+  transform:translateZ(-16px) rotate(3deg);
+  opacity:.42;filter:blur(2px);
+}
+.portrait{
+  position:absolute;inset:0;
+  background:linear-gradient(145deg,var(--gold-soft),var(--red-live) 52%,var(--gold));
+  clip-path:polygon(50% 0,95% 25%,95% 75%,50% 100%,5% 75%,5% 25%);
+  filter:drop-shadow(0 0 28px rgba(212,175,55,.42)) drop-shadow(0 0 18px rgba(139,20,32,.35));
+  padding:4px;transform:translateZ(28px);
+}
+.portrait img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 20%;
+  clip-path:polygon(50% 0,95% 25%,95% 75%,50% 100%,5% 75%,5% 25%);
+  filter:grayscale(.14) contrast(1.07);transition:filter .5s ease;
+}
+:root[data-theme="light"] .portrait img{filter:none}
+.portrait::after{
+  content:"";position:absolute;inset:4px;clip-path:inherit;pointer-events:none;
+  background:linear-gradient(160deg,rgba(212,175,55,.14),transparent 45%,rgba(139,20,32,.24));
+}
+.chip{
+  position:absolute;font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  padding:9px 14px;border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(8px);color:var(--gold);
+  transform:translate3d(calc(var(--px,0)*var(--depth,1)*28px),calc(var(--py,0)*var(--depth,1)*22px),var(--z,42px));
+  transition:transform .2s ease,border-color .3s;box-shadow:0 10px 26px var(--shadow);
+}
+.chip.one{left:-5%;top:18%;--depth:1.6;--z:48px}
+.chip.two{right:-7%;top:35%;--depth:-1.3;--z:56px;color:var(--red-live)}
+.chip.three{left:3%;bottom:10%;--depth:1.2;--z:36px}
+.chip b{color:var(--text);font-weight:500}
+
+/* =========================================================================
+   9. ABOUT, SKILLS, PROJECTS, EXPERIENCE, CONTACT
+   ========================================================================= */
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.about-text p{color:var(--muted);margin:0 0 18px}
+.about-text strong{color:var(--text);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+.stat{
+  padding:22px 16px;border:1px solid var(--line);background:var(--glass);
+  text-align:center;transition:transform .35s,border-color .35s,box-shadow .35s;
+}
+.stat:hover{border-color:var(--gold)}
+.stat b{font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1;color:var(--gold);display:block}
+.stat span{font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.about-card{padding:34px;position:relative;overflow:hidden}
+.about-card::before{
+  content:"“";position:absolute;right:18px;top:-50px;
+  font-family:'Bebas Neue',sans-serif;font-size:230px;color:rgba(212,175,55,.07);pointer-events:none;
+}
+.about-card h3{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:1px;margin:0 0 10px}
+.about-card > p{color:var(--muted);font-size:14px;margin-bottom:24px}
+.perk{display:flex;gap:14px;align-items:center;padding:13px 0;border-top:1px solid var(--line)}
+.perk .num{font-family:'Oswald',sans-serif;font-size:11px;color:var(--red-live);letter-spacing:.12em}
+.perk h4{margin:0;font-family:'Oswald',sans-serif;font-size:15px;font-weight:500;letter-spacing:.05em}
+.perk p{margin:2px 0 0;font-size:12px;color:var(--muted)}
+.tag-strip{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.tag-strip span{
+  font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  padding:6px 11px;border:1px solid var(--line);color:var(--muted);
+}
+
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.skill-card{padding:26px 22px;position:relative;overflow:hidden}
+.skill-card::after{
+  content:"";position:absolute;left:0;top:0;width:100%;height:2px;
+  background:linear-gradient(90deg,var(--red-live),var(--gold));
+  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);
+}
+.skill-card:hover::after{transform:scaleX(1)}
+.skill-card h3{font-family:'Oswald',sans-serif;font-size:17px;font-weight:500;letter-spacing:.08em;margin:0 0 20px}
+.skill-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 8px}
+.skill{
+  padding:12px 6px;border:1px solid transparent;text-align:center;
+  transition:border-color .3s,background .3s,transform .3s,box-shadow .3s;
+}
+.skill:hover{
+  border-color:color-mix(in srgb,var(--brand) 55%,transparent);
+  background:var(--glass);
+  box-shadow:0 8px 22px rgba(0,0,0,.22),inset 0 0 18px color-mix(in srgb,var(--brand) 10%,transparent);
+}
+.skill .bicon{width:30px;height:30px;margin:0 auto 7px}
+.skill small{font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:.08em;color:var(--muted);display:block}
+
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.project{padding:30px;position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:305px}
+.project::before{
+  content:attr(data-no);position:absolute;right:16px;bottom:-24px;
+  font-family:'Bebas Neue',sans-serif;font-size:132px;line-height:1;
+  color:var(--gold);opacity:.045;transition:opacity .4s;pointer-events:none;
+}
+.project:hover::before{opacity:.1}
+.project .meta{font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--red-live)}
+.project h3{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:1px;line-height:1.1;margin:14px 0 10px}
+.project p{color:var(--muted);font-size:14px;margin:0 0 20px}
+.project .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;margin-bottom:18px}
+.project .tags span{
+  font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:.1em;
+  border:1px solid var(--line);padding:5px 9px;color:var(--gold);
+}
+.project a.project-link{
+  font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);display:inline-flex;gap:8px;align-items:center;width:max-content;
+  border-bottom:1px solid transparent;padding-bottom:2px;
+  transition:gap .3s var(--ease),border-color .3s,text-shadow .3s;
+}
+.project a.project-link:hover{gap:14px;border-color:var(--gold);text-shadow:0 0 12px rgba(212,175,55,.45)}
+
+.timeline{position:relative;padding-left:34px;max-width:880px}
+.timeline::before{
+  content:"";position:absolute;left:8px;top:8px;bottom:8px;width:1px;
+  background:linear-gradient(var(--gold),var(--red-live),transparent);
+}
+.timeline-item{position:relative;padding:0 0 34px 16px}
+.timeline-item::before{
+  content:"";position:absolute;left:-30px;top:8px;width:11px;height:11px;
+  background:var(--bg);border:2px solid var(--gold);transform:rotate(45deg);
+  transition:background .3s,box-shadow .3s;
+}
+.timeline-item:hover::before{background:var(--gold);box-shadow:0 0 16px var(--gold)}
+.timeline-item time{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--red-live)}
+.timeline-item h3{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;margin:4px 0}
+.timeline-item .org{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.12em;color:var(--gold);text-transform:uppercase}
+.timeline-item p{color:var(--muted);font-size:14px;margin:8px 0 0;max-width:650px}
+
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+.contact-grid h3{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:1px;margin:0 0 12px}
+.contact-method{display:flex;align-items:center;gap:16px;padding:15px 0;border-bottom:1px solid var(--line)}
+.contact-method .bicon{width:24px;height:24px;flex:0 0 24px}
+.contact-method h4{margin:0;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.contact-method p{margin:0;font-size:14px;color:var(--text)}
+.contact-method a{border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
+.contact-method a:hover{color:var(--gold);border-color:var(--gold)}
+.social-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:28px}
+.social-card{
+  padding:16px 6px;display:grid;justify-items:center;gap:8px;border:1px solid var(--line);
+  background:var(--glass);transition:transform .35s,border-color .35s,box-shadow .35s;
+}
+.social-card:hover{
+  transform:translateY(-6px);border-color:var(--brand);
+  box-shadow:0 12px 30px var(--shadow),0 0 18px color-mix(in srgb,var(--brand) 28%,transparent);
+}
+.social-card .bicon{width:25px;height:25px}
+.social-card span{font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:.08em;color:var(--muted)}
+
+.contact-form{padding:34px;display:grid;gap:14px}
+.contact-form input,.contact-form textarea{
+  width:100%;background:var(--glass);border:1px solid var(--line);color:var(--text);
+  padding:14px 16px;outline:none;transition:border-color .3s,box-shadow .3s;resize:vertical;
+}
+.contact-form input:focus,.contact-form textarea:focus{
+  border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,.11);
+}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--faint)}
+.form-note{font-size:12px;color:var(--faint);margin:0}
+
+.site-footer{
+  border-top:1px solid var(--line);padding:30px 0 90px;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.12em;
+  color:var(--muted);text-transform:uppercase;
+}
+
+/* =========================================================================
+   10. MUSIC PLAYER (with animated equalizer, play/pause & volume slider)
+   ========================================================================= */
+.player{
+  position:fixed;left:22px;bottom:22px;z-index:510;
+  display:flex;align-items:center;gap:13px;padding:10px 16px 10px 10px;
+  background:var(--panel);border:1px solid var(--line);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 12px 40px var(--shadow);max-width:calc(100vw - 44px);
+  transition:background .65s var(--ease),border-color .4s;
+}
+.play-btn{
+  width:42px;height:42px;flex:0 0 42px;display:grid;place-items:center;
+  border:1px solid var(--gold);color:var(--gold);border-radius:50%;
+  transition:box-shadow .3s,background .3s,transform .3s;
+}
+.play-btn:hover{box-shadow:0 0 22px rgba(212,175,55,.35);background:rgba(212,175,55,.12);transform:scale(1.06)}
+.play-btn svg{width:16px;height:16px;fill:currentColor}
+.play-btn .ico-pause{display:none}
+.player.playing .play-btn .ico-play{display:none}
+.player.playing .play-btn .ico-pause{display:block}
+
+.eq{display:flex;align-items:flex-end;gap:3px;height:18px;width:22px}
+.eq i{width:3px;height:4px;background:var(--gold);border-radius:1px;transition:height .25s}
+.player.playing .eq i{animation:eq .68s ease-in-out infinite alternate}
+.player.playing .eq i:nth-child(2){animation-delay:.18s}
+.player.playing .eq i:nth-child(3){animation-delay:.36s}
+.player.playing .eq i:nth-child(4){animation-delay:.1s}
+@keyframes eq{from{height:3px;background:var(--red-live)}to{height:18px;background:var(--gold-soft)}}
+
+.player-meta{min-width:0}
+.player-meta b{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.16em;display:block;white-space:nowrap}
+.player-meta small{
+  font-size:10px;color:var(--faint);display:block;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;max-width:170px;
+}
+.volume{display:flex;align-items:center;gap:8px;color:var(--gold)}
+.volume svg{width:16px;height:16px;fill:currentColor;flex:0 0 16px}
+input[type="range"]{
+  -webkit-appearance:none;appearance:none;width:82px;height:3px;
+  background:var(--line);outline:none;border-radius:2px;
+}
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:12px;height:12px;border-radius:50%;
+  background:var(--gold);box-shadow:0 0 10px var(--gold);
+}
+input[type="range"]::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:var(--gold)}
+
+/* =========================================================================
+   11. RESPONSIVE BREAKPOINTS
+   ========================================================================= */
+@media(max-width:1100px){
+  .skills-grid{grid-template-columns:repeat(2,1fr)}
+  .hero h1{font-size:clamp(4rem,10vw,7rem)}
+  .portrait-wrap{width:min(38vw,340px)}
+}
+@media(max-width:860px){
+  .nav-menu{
+    position:absolute;top:78px;right:24px;left:24px;display:grid;gap:4px;padding:18px;
+    background:color-mix(in srgb,var(--bg) 96%,transparent);border:1px solid var(--line);
+    backdrop-filter:blur(18px);transform:translateY(-14px);opacity:0;pointer-events:none;transition:.35s var(--ease);
+  }
+  .nav-menu.open{transform:none;opacity:1;pointer-events:auto}
+  .nav-link{padding:11px 6px;border-bottom:1px solid var(--line)}
+  .nav-link::after{bottom:4px;width:44px}
+  .menu-btn{display:block}
+  .hero{grid-template-columns:1fr;text-align:left;padding-top:118px;gap:14px}
+  .hero-visual{height:420px;order:-1;margin-top:-18px}
+  .portrait-wrap{width:280px;min-width:0}
+  .rotator{width:70vw;right:-18vw;top:12vh;opacity:.3}
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:36px}
+  .projects-grid{grid-template-columns:1fr}
+  .social-grid{grid-template-columns:repeat(3,1fr);max-width:420px}
+}
+@media(max-width:560px){
+  .wrap{width:calc(100% - 32px)}
+  .nav-inner{width:calc(100% - 32px)}
+  .mode-label{display:none}
+  .mode-btn{width:38px;padding:0;justify-content:center}
+  .section{padding:82px 0}
+  .hero{padding-top:108px}
+  .hero-visual{height:350px}
+  .portrait-wrap{width:236px}
+  .chip{font-size:8px;padding:6px 9px}
+  .chip.one{left:-3%}.chip.two{right:-3%}
+  .hero h1{font-size:clamp(3.6rem,16.5vw,5.8rem)}
+  .hero-actions .btn{padding:12px 18px;font-size:11px;flex:1 1 auto;justify-content:center}
+  .section h2{font-size:3rem}
+  .skills-grid{grid-template-columns:1fr}
+  .skill-list{grid-template-columns:repeat(2,1fr)}
+  .stats{gap:8px}
+  .stat{padding:16px 6px}.stat b{font-size:34px}.stat span{font-size:8px}
+  .about-card,.contact-form{padding:22px}
+  .social-grid{grid-template-columns:repeat(3,1fr)}
+  .player{left:12px;bottom:12px;padding:7px 10px 7px 7px;gap:9px}
+  .player-meta small{max-width:95px}
+  input[type="range"]{width:54px}
+  .volume svg{display:none}
+  .site-footer{font-size:10px;padding-bottom:84px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .js .reveal,.js .reveal [data-stagger]{opacity:1;transform:none;filter:none}
+  .split-inner{opacity:1;transform:none}
+  .hero h1 .char,.tagline .tw{opacity:1;transform:none}
+  .hero h1 .char-i{animation:none}
+  .cursor-dot,.cursor-ring,.cursor-trail{display:none!important}
+}
+</style>
+</head>
+<body class="locked">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- =========================================================================
+     LOADING SCREEN (Progress 0% -> 100%)
+     ========================================================================= -->
+<div id="loader" aria-hidden="true">
+  <div class="load-box">
+    <div class="load-mark">AR</div>
+    <div class="load-text">PREPARING THE SCENE</div>
+    <div class="load-track"><div class="load-fill" id="loadFill"></div></div>
+    <div class="load-pct"><span>LOADING</span><span id="loadPct">0%</span></div>
+  </div>
 </div>
-<nav class="navbar">
-<a class="nav-link active" href="#home">Home</a>
-<a class="nav-link" href="#about">About</a>
-<a class="nav-link" href="#skills">Skills</a>
-<a class="nav-link" href="#projects">Projects</a>
-<a class="nav-link" href="#experience">Experience</a>
-<a class="nav-link" href="#certifications">Certifications</a>
-<a class="nav-link" href="#services">Services</a>
-<a class="nav-link" href="#contact">Contact</a>
-</nav>
-<button class="menu-toggle">
-<span></span>
-<span></span>
-<span></span>
-</button>
+
+<!-- =========================================================================
+     ENTER / PLAY MUSIC GATE (Starts audio on user's first click)
+     ========================================================================= -->
+<div id="entry" role="dialog" aria-modal="true" aria-label="Enter portfolio">
+  <div class="entry-inner">
+    <span class="entry-kicker">Welcome to my domain</span>
+    <div class="entry-title">ENTER</div>
+    <p class="entry-sub">Turn on the soundtrack for the full Gangster Mode experience — or enter quietly.</p>
+    <button class="entry-btn" id="enterBtn" type="button"><span>Enter &amp; Play Music</span></button>
+    <button class="entry-skip" id="skipBtn" type="button">Enter without music</button>
+  </div>
 </div>
+
+<!-- Custom trailing cursor -->
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+<div class="cursor-trail" data-trail aria-hidden="true"></div>
+<div class="cursor-trail" data-trail aria-hidden="true"></div>
+<div class="cursor-trail" data-trail aria-hidden="true"></div>
+<div class="cursor-trail" data-trail aria-hidden="true"></div>
+
+<!-- Atmosphere: Spotlight, Smoke, Grain & Slowly Rotating 3D Geometry -->
+<div class="atmosphere" aria-hidden="true">
+  <div class="spotlight"></div>
+  <i class="smoke a"></i>
+  <i class="smoke b"></i>
+  <i class="smoke c"></i>
+</div>
+<div class="rotator" aria-hidden="true">
+  <div class="ring3d"></div>
+  <div class="ring3d two"></div>
+  <div class="cube3d" id="cube">
+    <i class="face f1"></i><i class="face f2"></i><i class="face f3"></i>
+    <i class="face f4"></i><i class="face f5"></i><i class="face f6"></i>
+  </div>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- Shared official Instagram gradient -->
+<svg class="svgs-only" aria-hidden="true">
+  <defs>
+    <linearGradient id="igGrad" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FEDA75"/>
+      <stop offset="25%" stop-color="#FA7E1E"/>
+      <stop offset="50%" stop-color="#D62976"/>
+      <stop offset="75%" stop-color="#962FBF"/>
+      <stop offset="100%" stop-color="#4F5BD5"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<!-- =========================================================================
+     NAVBAR
+     ========================================================================= -->
+<header class="site-header" id="header">
+  <div class="nav-inner">
+    <a class="logo" href="#home" aria-label="Home"><b>AR</b>.<small>Abdul Razaque</small></a>
+    <nav class="nav-menu" id="navMenu" aria-label="Main navigation">
+      <a class="nav-link active" href="#home">Home</a>
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="#skills">Skills</a>
+      <a class="nav-link" href="#projects">Projects</a>
+      <a class="nav-link" href="#experience">Experience</a>
+      <a class="nav-link" href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="mode-btn" id="themeBtn" type="button" aria-label="Switch to Light Mode" title="Toggle Gangster Mode / Light Mode">
+        <svg class="theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+        <svg class="theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 15.2A8.6 8.6 0 0 1 8.8 3.6a8.6 8.6 0 1 0 11.6 11.6Z"/></svg>
+        <span class="mode-label" id="modeLabel">Gangster Mode</span>
+      </button>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
 </header>
-<!-- Hero Section -->
-<section class="hero" id="home">
-<div class="stars"></div>
-<div class="hero-content">
-<div class="hero-text">
-<h3 class="greeting">AVAILABLE FOR AI / ML PROJECTS</h3>
-<h1 class="name">Abdul Razaque</h1>
-<p class="title"><span class="research-label">RESEARCH INTERESTS / </span><span class="typing-text" aria-hidden="true">Machine Learning</span><span class="sr-only">Research interests: machine learning, computer vision, generative AI and data-driven systems.</span></p>
-<p class="description">BS Artificial Intelligence student at Aror University, building practical machine learning, computer vision, and generative AI applications. From real-world data to working software.</p>
-<div class="hero-buttons">
-<a class="btn btn-primary" href="#contact">Get In Touch</a>
-<a class="btn btn-secondary" href="#projects">View My Work</a>
-<a class="btn btn-ghost" href="https://github.com/abrazzaq02" rel="noopener noreferrer" target="_blank">GitHub Profile</a>
-<a class="btn btn-ghost" download="" href="Abdul_Razaque.pdf" rel="noopener noreferrer" target="_blank">Download CV</a>
-</div>
-<div class="social-links">
-<a class="social-icon" href="https://github.com/abrazzaq02" rel="noopener noreferrer" target="_blank" title="GitHub">
-<i class="bx bxl-github"></i>
-</a>
-<a class="social-icon" href="https://linkedin.com/in/abdul-razaque-744a782a1/" rel="noopener noreferrer" target="_blank" title="LinkedIn">
-<i class="bx bxl-linkedin"></i>
-</a>
-<a class="social-icon" href="https://x.com/razaq303" rel="noopener noreferrer" target="_blank" title="X" aria-label="X"><svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-7.4L5.5 22H2.3l7.3-8.4L1.9 2h6.5l4.5 6.8L18.9 2Zm-1.1 18h1.7L7.4 3.9H5.6L17.8 20Z"/></svg></a>
-<a class="social-icon" href="https://www.instagram.com/razzaq_khan7?cplk=MTc1bDk1bmk0cjZ2aA==" rel="noopener noreferrer" target="_blank" title="Instagram" aria-label="Instagram"><i class="bx bxl-instagram"></i></a>
-<a class="social-icon" href="mailto:f23ari02@aror.edu.pk" title="Email" aria-label="Email"><i class="bx bx-envelope"></i></a>
 
-</div>
-</div>
-<div class="hero-visual"><div aria-hidden="true" class="holo-halo"><div class="holo-ring r1"></div><div class="holo-ring r2"></div><div class="holo-ring r3"></div><div class="holo-core">AI<span>✦</span></div><div class="satellite s1">ML</div><div class="satellite s2">DATA</div><div class="satellite s3">CODE</div></div>
-<div class="ai-orb"></div>
-<div class="code-block">
-<div class="code-header"><span></span><span></span><span></span></div>
-<div class="code-content">
-<p><span class="keyword">def</span> <span class="function">build_intelligence</span>():</p>
-<p><span class="indent">passion</span> = <span class="string">"AI &amp; ML"</span></p>
-<p><span class="indent">skills</span> = [<span class="string">"Python"</span>, <span class="string">"FastAPI"</span>, <span class="string">"LangChain"</span>]</p>
-<p><span class="indent">mission</span> = <span class="string">"Create Impact"</span></p>
-</div>
-</div>
-</div>
-</div>
-<div class="scroll-indicator">
-<span>Scroll to explore</span>
-<div class="mouse-wheel"><span></span></div>
-</div>
-</section>
-<!-- About Section -->
-<section class="about" id="about">
-<div class="section-container">
-<div class="section-header"><h2>About Me</h2><div class="header-line"></div></div>
-<div class="about-content">
-<div class="about-text">
-<p>I'm <strong>Abdul Razaque</strong>, a BS Artificial Intelligence student at Aror University in Sukkur, Pakistan (expected graduation May 2027). I build hands-on AI systems and care about measurable results.</p>
-<p>My work spans <strong>machine learning, computer vision, deep learning, and generative AI</strong>. I use Python, Scikit-Learn, OpenCV, PyTorch and FastAPI to take ideas from experiments to working applications.</p>
-<p>I’ve completed internships, built practical projects, and taken part in AI hackathons, student events, and community initiatives. Browse the live project repositories and original certificates below.</p>
-<div class="stats">
-<div class="stat"><h3>4</h3><p>Featured projects</p></div>
-<div class="stat"><h3>10</h3><p>Certificates</p></div>
-<div class="stat"><h3>2027</h3><p>Expected graduation</p></div>
-</div>
-</div>
-<div class="about-image"><div class="image-frame"><div class="frame-glow"></div><img alt="Abdul Razaque" src="./images/About.png"/></div></div>
-</div>
-</div>
-</section>
-<section class="highlights">
-<div class="section-container">
-<div class="section-header"><h2>What I Bring</h2><div class="header-line"></div></div>
-<div class="highlights-grid">
-<div class="highlight-card"><div class="highlight-icon"><i class="bx bxs-rocket"></i></div><h3>AI Product Thinking</h3><p>Turning ideas into practical AI products with user-focused design and measurable outcomes.</p></div>
-<div class="highlight-card"><div class="highlight-icon"><i class="bx bx-brain"></i></div><h3>ML &amp; Automation</h3><p>Developing machine learning workflows, intelligent automation, and efficient data-driven systems.</p></div>
-<div class="highlight-card"><div class="highlight-icon"><i class="bx bx-code-curly"></i></div><h3>Clean Development</h3><p>Building reliable APIs, backend systems, and AI features with maintainable, scalable code.</p></div>
-</div>
-</div>
-</section>
-<!-- Skills Section -->
-<section class="skills" id="skills">
-<div class="section-container">
-<div class="section-header"><h2>Technical Skills</h2><div class="header-line"></div></div>
-<div class="skills-grid">
-<div class="skill-category"><h3>Machine Learning</h3><div class="skill-tags"><span class="skill-tag">Scikit-Learn</span><span class="skill-tag">PyTorch</span><span class="skill-tag">TensorFlow</span><span class="skill-tag">Keras</span><span class="skill-tag">OpenCV</span><span class="skill-tag">NLP</span></div></div>
-<div class="skill-category"><h3>Generative AI</h3><div class="skill-tags"><span class="skill-tag">LLMs</span><span class="skill-tag">Transformers</span><span class="skill-tag">RAG</span><span class="skill-tag">Prompt Engineering</span><span class="skill-tag">LangChain</span><span class="skill-tag">Agentic AI</span></div></div>
-<div class="skill-category"><h3>Languages &amp; Data</h3><div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">Java</span><span class="skill-tag">C / C++</span><span class="skill-tag">SQL</span><span class="skill-tag">JavaScript</span><span class="skill-tag">Pandas</span><span class="skill-tag">NumPy</span></div></div>
-<div class="skill-category"><h3>Build &amp; Deploy</h3><div class="skill-tags"><span class="skill-tag">FastAPI</span><span class="skill-tag">Flask</span><span class="skill-tag">Streamlit</span><span class="skill-tag">Docker</span><span class="skill-tag">AWS</span><span class="skill-tag">Git / GitHub</span></div></div>
-</div>
-</div>
-</section>
-<!-- Projects Section -->
-<section class="projects" id="projects">
-<div class="section-container">
-<div class="section-header"><span class="section-kicker">01 / SELECTED WORK</span><h2>Featured Projects</h2><div class="header-line"></div><p class="section-intro">Exploring practical applications of AI, from intelligent systems to tools for space health.</p></div>
-<div class="projects-grid"><article class="project-card interactive-tilt"><div class="project-number">01 / FEATURED</div><div class="project-header"><div class="project-icon"><i class="bx bx-brain"></i></div><span class="project-status">Expert System</span></div><h3>AI-Based Smart Career Counseling</h3><p>A rule-based career recommendation tool with forward chaining, skill-gap analysis, and personalized roadmaps across 10 career domains.</p><div class="project-tags"><span>Python</span><span>Streamlit</span><span>Expert Systems</span></div><a class="project-link" href="https://github.com/abrazzaq02/AI-Based-Smart-Career-Counseling-" rel="noopener noreferrer" target="_blank">Explore repository <i class="bx bx-right-arrow-alt"></i></a></article><article class="project-card interactive-tilt"><div class="project-number">02 / FEATURED</div><div class="project-header"><div class="project-icon"><i class="bx bx-line-chart"></i></div><span class="project-status">AutoML</span></div><h3>AutoML for Small Businesses</h3><p>Automates preprocessing, compares five classification algorithms, and presents evaluation metrics and visualizations for non-technical users.</p><div class="project-tags"><span>Python</span><span>Scikit-Learn</span><span>Pandas</span></div><a class="project-link" href="https://github.com/abrazzaq02/AutoMl-For-Small-Bussiness" rel="noopener noreferrer" target="_blank">Explore repository <i class="bx bx-right-arrow-alt"></i></a></article><article class="project-card interactive-tilt"><div class="project-number">03 / FEATURED</div><div class="project-header"><div class="project-icon"><i class="bx bx-scan"></i></div><span class="project-status">Computer Vision</span></div><h3>Face Detection Attendance System</h3><p>Real-time attendance tracking with OpenCV, face detection, lighting preprocessing, and timestamped records.</p><div class="project-tags"><span>Python</span><span>OpenCV</span><span>SQL</span></div><a class="project-link" href="https://github.com/abrazzaq02/Face-Detection-Attendence-System" rel="noopener noreferrer" target="_blank">Explore repository <i class="bx bx-right-arrow-alt"></i></a></article><article class="project-card interactive-tilt"><div class="project-number">04 / FEATURED</div><div class="project-header"><div class="project-icon"><i class="bx bx-planet"></i></div><span class="project-status">Space Health</span></div><h3>ASTROCARE AI</h3><p>A crew-health research prototype with simulated telemetry, explainable trends, space-weather context and a mission simulator. A hackathon demonstration, not a medical tool.</p><div class="project-tags"><span>React</span><span>FastAPI</span><span>AI</span></div><a class="project-link" href="https://astrocare-ai.pages.dev/" rel="noopener noreferrer" target="_blank">View live demo <i class="bx bx-link-external"></i></a><a class="project-link" href="https://github.com/abrazzaq02/ASTROCARE-AI" rel="noopener noreferrer" target="_blank">Explore repository <i class="bx bx-right-arrow-alt"></i></a></article></div>
-<div class="more-projects"><a class="btn btn-secondary" href="https://github.com/abrazzaq02?tab=repositories" rel="noopener noreferrer" target="_blank">Explore all GitHub repositories <i class="bx bxl-github"></i></a><a class="btn btn-ghost" href="https://www.linkedin.com/in/abdul-razaque-744a782a1/" rel="noopener noreferrer" target="_blank">Connect on LinkedIn <i class="bx bxl-linkedin"></i></a></div></div>
-</section>
-<!-- Experience Section -->
-<section class="experience" id="experience">
-<div class="section-container">
-<div class="section-header"><span class="section-kicker">02 / THE JOURNEY</span><h2>Experience &amp; Education</h2><div class="header-line"></div><p class="section-intro">A growing journey through learning, research, and building.</p></div>
-<div class="timeline"><div class="timeline-item"><div class="timeline-marker"><span></span></div><div class="timeline-content interactive-tilt"><div class="timeline-header"><h3>NASA Space Apps Challenge</h3><span class="timeline-date">Nov 2026</span></div><p class="timeline-org">Galactic Problem Solver</p><p>Recognized for participation and efforts to address challenges on Earth and in space.</p></div></div><div class="timeline-item"><div class="timeline-marker"><span></span></div><div class="timeline-content interactive-tilt"><div class="timeline-header"><h3>Machine Learning Intern</h3><span class="timeline-date">Jul – Sep 2025</span></div><p class="timeline-org">Elevvo Pathways</p><p>Built a music genre CNN + MFCC classifier, delivered ML pipelines and documented outcomes for technical and non-technical teams.</p></div></div><div class="timeline-item"><div class="timeline-marker"><span></span></div><div class="timeline-content interactive-tilt"><div class="timeline-header"><h3>Business Technology Intern</h3><span class="timeline-date">10 Jun – 22 Jul 2026</span></div><p class="timeline-org">Alkaram Textile Mills (Pvt.) Ltd.</p><p>Completed an internship in the Business Technology department, as confirmed by the employer’s letter.</p></div></div><div class="timeline-item"><div class="timeline-marker"><span></span></div><div class="timeline-content interactive-tilt"><div class="timeline-header"><h3>Blockchain Development Intern</h3><span class="timeline-date">2025</span></div><p class="timeline-org">Micro IT Industry</p><p>Completed a blockchain development internship; certificate issued on 26 August 2025.</p></div></div><div class="timeline-item"><div class="timeline-marker"><span></span></div><div class="timeline-content interactive-tilt"><div class="timeline-header"><h3>BS Artificial Intelligence</h3><span class="timeline-date">Jun 2023 – May 2027 (expected)</span></div><p class="timeline-org">Aror University of Art, Architecture, Design and Heritage</p><p>Coursework in machine learning, deep learning, neural networks, computer vision, generative AI and digital image processing.</p></div></div></div>
-</div>
-</section>
-<!-- Certifications Section: certificate details will be added from verified information -->
-<section class="certifications" id="certifications">
-<div class="section-container">
-<div class="section-header"><span class="section-kicker">03 / RECOGNITION</span><h2>Proof of Work &amp; Recognition</h2><div class="header-line"></div><p class="section-intro">Certificates and milestones from a commitment to continuous learning.</p></div>
-<div aria-label="Filter certificates" class="cert-filter" role="group"><button aria-pressed="true" class="filter-chip active" data-filter="All" type="button">All</button><button aria-pressed="false" class="filter-chip" data-filter="Professional" type="button">Professional</button><button aria-pressed="false" class="filter-chip" data-filter="Hackathons" type="button">Hackathons</button><button aria-pressed="false" class="filter-chip" data-filter="Internships" type="button">Internships</button><button aria-pressed="false" class="filter-chip" data-filter="Leadership" type="button">Leadership</button><button aria-pressed="false" class="filter-chip" data-filter="Events" type="button">Events</button></div><div class="certifications-grid"><article class="cert-card interactive-tilt" data-category="Hackathons"><button aria-label="View NASA Space Apps Challenge certificate" class="certificate-preview" data-full="assets/certificates/nasa-space-apps.png" data-title="NASA Space Apps Challenge — Galactic Problem Solver" type="button"><img alt="NASA Space Apps Challenge Galactic Problem Solver certificate awarded to Abdul Razaque" loading="lazy" src="assets/certificates/nasa-space-apps.png"/><span class="preview-overlay"><i class="bx bx-expand-alt"></i> View original</span></button><div class="cert-card-content"><span class="cert-eyebrow">Hackathons · 14–15 Nov 2026</span><h3>Galactic Problem Solver</h3><p class="cert-issuer">NASA Space Apps Challenge</p><p class="cert-description">Recognized for participation and efforts to address challenges on Earth and in space.</p><button class="cert-link" data-full="assets/certificates/nasa-space-apps.png" data-title="NASA Space Apps Challenge — Galactic Problem Solver" type="button">View certificate <i class="bx bx-up-arrow-alt"></i></button></div></article><article class="cert-card interactive-tilt" data-category="Hackathons"><button aria-label="View Open Hack’26 — 24-Hour Hackathon certificate" class="certificate-preview" data-full="assets/certificates/open-hack.webp" data-title="Open Hack’26 — 24-Hour Hackathon" type="button"><img alt="Open Hack’26 — 24-Hour Hackathon certificate" loading="lazy" src="assets/certificates/open-hack.webp"/><span class="preview-overlay"><i class="bx bx-expand-alt"></i> View original</span></button><div class="cert-card-content"><span class="cert-eyebrow">Hackathons · 13 Oct 2026</span><h3>Open Hack’26 — 24-Hour Hackathon</h3><p class="cert-issuer">MUET SZAB, Department of Software Engineering</p><p class="cert-description">Participated as part of Team Bug Hunters.</p><button class="cert-link" data-full="assets/certificates/open-hack.webp" data-title="Open Hack’26 — 24-Hour Hackathon" type="button">View certificate <i class="bx bx-up-arrow-alt"></i></button></div></article><article class="cert-card interactive-tilt" data-category="Hackathons"><button aria-label="View NYLP × AI Hackathon — Building AI Products certificate" class="certificate-preview" data-full="assets/certificates/nylp-ai.webp" data-title="NYLP × AI Hackathon — Building AI Products" type="button"><img alt="NYLP × AI Hackathon — Building AI Products certificate" loading="lazy" src="assets/certificates/nylp-ai.webp"/><span class="preview-overlay"><i class="bx bx-expand-alt"></i> View original</span></button><div class="cert-card-content"><span class="cert-eyebrow">Hackathons · 1 Nov 2026</span><h3>NYLP × AI Hackathon — Building AI Products</h3><p class="cert-issuer">National Youth Leadership Programme</p><p class="cert-description">Participation · 15–18 Oct 2026 · NYLP/Hackathon/B1/008</p><button class="cert-link" data-full="assets/certificates/nylp-ai.webp" data-title="NYLP × AI Hackathon — Building AI Products" type="button">View certificate <i class="bx bx-up-arrow-alt"></i></button></div></article><article class="cert-card interactive-tilt" data-category="Leadership"><button aria-label="View IMUN 2026 — Ambassador Recognition certificate" class="certificate-preview" data-full="assets/certificates/imun.webp" data-title="IMUN 2026 — Ambassador Recognition" type="button"><img alt="IMUN 2026 — Ambassador Recognition certificate" loading="lazy" src="assets/certificates/imun.webp"/><span class="preview-overlay"><i class="bx bx-expand-alt"></i> View original</span></button><div class="cert-card-content"><span class="cert-eyebrow">Leadership · 2026</span><h3>IMUN 2026 — Ambassador Recognition</h3><p class="cert-issuer">National Youth Leadership Programme</p><p class="cert-description">Certificate of appreciation · Ambassador · NYLP/IMUN-2026/COA/0033</p><button class="cert-link" data-full="assets/certificates/imun.webp" data-title="IMUN 2026 — Ambassador Recognition" type="button">View certificate <i class="bx bx-up-arrow-alt"></i></button></div></article><article class="cert-card interactive-tilt" data-category="Professional"><button aria-label="View Google Data Analytics Professional Certificate certificate" class="certificate-preview" data-full="assets/certificates/data-analytics.webp" data-title="Google Data Analytics Professional Certificate" type="button"><img alt="Google Data Analytics Professional Certificate certificate" loading="lazy" src="assets/certificates/data-analytics.webp"/><span class="preview-overlay"><i class="bx bx-expand-alt"></i> View original</span></button><div class="cert-card-content"><span class="cert-eyebrow">Professional · 12 Jul 2025</span><h3>Google Data Analytics Professional Certificate</h3><p class="cert-issuer">Google · Coursera</p><p class="cert-description">Professional Certificate · 9 courses listed on certificate</p><button class="cert-link" data-full="assets/certificates/data-analytics.webp" data-title="Google Data Analytics Professional Certificate" type="button">View certificate <i class="bx bx-up-arrow-alt"></i></button></div></article><article class="cert-card interactive-tilt" data-category="Leadership"><button aria-label="View Lead Forward Sindh — Youth Volunteerism Camp certificate" class="certificate-preview" data-full="assets/certificates/lead-forward.webp" data-title="Lead Forward Sindh — Youth Volunteerism Camp" type="button"><img alt="Lead Forward Sindh — Youth Volunteerism Camp certificate" loading="lazy" src="assets/certificates/lead-forward.webp"/><span class="preview-overlay"><i class="bx bx-expand-alt"></i> View original</span></button><div class="cert-card-content"><span class="cert-eyebrow">Leadership · 2026</span><h3>Lead Forward Sindh — Youth Volunteerism Camp</h3><p class="cert-issuer">Khinext · Government of Sindh</p><p class="cert-description">Certificate of appreciation for youth volunteerism.</p><button class="cert-link" data-full="assets/certificates/lead-forward.webp" data-title="Lead Forward Sindh — Youth Volunteerism Camp" type="button">View certificate <i class="bx bx-up-arrow-alt"></i></button></div></article><article class="cert-card interactive-tilt" data-category="Professional"><button aria-label="View Google Cybersecurity Professional Certificate certificate" class="certificate-preview" data-full="assets/certificates/cybersecurity.webp" data-title="Google Cybersecurity Professional Certificate" type="button"><img alt="Google Cybersecurity Professional Certificate certificate" loading="lazy" src="assets/certificates/cybersecurity.webp"/><span class="preview-overlay"><i class="bx bx-expand-alt"></i> View original</span></button><div class="cert-card-content"><span class="cert-eyebrow">Professional · 5 Nov 2024</span><h3>Google Cybersecurity Professional Certificate</h3><p class="cert-issuer">Google · Coursera</p><p class="cert-description">Professional Certificate · 8 courses</p><button class="cert-link" data-full="assets/certificates/cybersecurity.webp" data-title="Google Cybersecurity Professional Certificate" type="button">View certificate <i class="bx bx-up-arrow-alt"></i></button></div></article><article class="cert-card interactive-tilt" data-category="Events"><button aria-label="View ISCE 2026 Workshops certificate" class="certificate-preview" data-full="assets/certificates/isce.webp" data-title="ISCE 2026 Workshops" type="button"><img alt="ISCE 2026 Workshops certificate" loading="lazy" src="assets/certificates/isce.webp"/><span class="preview-overlay"><i class="bx bx-expand-alt"></i> View original</span></button><div class="cert-card-content"><span class="cert-eyebrow">Events · 3–6 May 2026</span><h3>ISCE 2026 Workshops</h3><p class="cert-issuer">International Student Convention &amp; Expo</p><p class="cert-description">Workshop participation · Islamabad</p><button class="cert-link" data-full="assets/certificates/isce.webp" data-title="ISCE 2026 Workshops" type="button">View certificate <i class="bx bx-up-arrow-alt"></i></button></div></article><article class="cert-card interactive-tilt" data-category="Leadership"><button aria-label="View AUMUN ’26 — Appreciation certificate" class="certificate-preview" data-full="assets/certificates/aumun.webp" data-title="AUMUN ’26 — Appreciation" type="button"><img alt="AUMUN ’26 — Appreciation certificate" loading="lazy" src="assets/certificates/aumun.webp"/><span class="preview-overlay"><i class="bx bx-expand-alt"></i> View original</span></button><div class="cert-card-content"><span class="cert-eyebrow">Leadership · 2026</span><h3>AUMUN ’26 — Appreciation</h3><p class="cert-issuer">AUMUN 2026</p><p class="cert-description">Certificate of appreciation for active participation and contribution.</p><button class="cert-link" data-full="assets/certificates/aumun.webp" data-title="AUMUN ’26 — Appreciation" type="button">View certificate <i class="bx bx-up-arrow-alt"></i></button></div></article><article class="cert-card interactive-tilt" data-category="Internships"><button aria-label="View Blockchain Development Internship certificate" class="certificate-preview" data-full="assets/certificates/blockchain.webp" data-title="Blockchain Development Internship" type="button"><img alt="Blockchain Development Internship certificate" loading="lazy" src="assets/certificates/blockchain.webp"/><span class="preview-overlay"><i class="bx bx-expand-alt"></i> View original</span></button><div class="cert-card-content"><span class="cert-eyebrow">Internships · 26 Aug 2025</span><h3>Blockchain Development Internship</h3><p class="cert-issuer">Micro IT Industry</p><p class="cert-description">Internship completion certificate.</p><button class="cert-link" data-full="assets/certificates/blockchain.webp" data-title="Blockchain Development Internship" type="button">View certificate <i class="bx bx-up-arrow-alt"></i></button></div></article></div>
-</div>
-<dialog aria-label="Certificate image viewer" id="certificate-dialog"><div class="dialog-top"><strong id="dialog-title">Certificate</strong><button aria-label="Close certificate" id="close-dialog" type="button">✕</button></div><img alt="Full certificate" id="dialog-image"/><a id="dialog-open" rel="noopener noreferrer" target="_blank">Open image in new tab ↗</a></dialog></section>
-<!-- Services Section -->
-<section class="services" id="services">
-<div class="section-container">
-<div class="section-header"><h2>Services &amp; Expertise</h2><div class="header-line"></div></div>
-<div class="services-grid">
-<div class="service-card"><div class="service-icon"><i class="bx bxs-brain"></i></div><h3>AI Prototypes</h3><p>Prototype AI-powered applications, recommendation systems and interactive demos.</p></div>
-<div class="service-card"><div class="service-icon"><i class="bx bx-data"></i></div><h3>Machine Learning Pipelines</h3><p>Prepare datasets, train and compare models, and evaluate results.</p></div>
-<div class="service-card"><div class="service-icon"><i class="bx bx-server"></i></div><h3>Python API Development</h3><p>Develop practical Flask and FastAPI backends for data and AI projects.</p></div>
-<div class="service-card"><div class="service-icon"><i class="bx bxs-network-chart"></i></div><h3>Data Analysis</h3><p>Transform raw data into clear exploratory visualizations and useful insights.</p></div>
-<div class="service-card"><div class="service-icon"><i class="bx bxs-rocket"></i></div><h3>Computer Vision</h3><p>Develop image-processing and detection workflows using OpenCV.</p></div>
-<div class="service-card"><div class="service-icon"><i class="bx bx-code-alt"></i></div><h3>Technical Collaboration</h3><p>Contribute to research, hackathons and software development teams.</p></div>
-</div>
-</div>
-</section>
-<!-- Contact Section -->
-<section class="contact" id="contact">
-<div class="section-container">
-<div class="section-header"><h2>Get In Touch</h2><div class="header-line"></div></div>
-<div class="contact-content">
-<div class="contact-info">
-<h3>Let's Connect</h3>
-<p>I'm always interested in hearing about new projects and opportunities. Whether you have a question or just want to say hello, feel free to reach out!</p>
-<div class="contact-methods">
-<div class="contact-method"><i class="bx bx-envelope"></i><div><h4>Email</h4><p><a href="mailto:f23ari02@aror.edu.pk">f23ari02@aror.edu.pk</a></p></div></div>
-<div class="contact-method"><i class="bx bx-phone"></i><div><h4>Phone</h4><p><a href="tel:+923063044889">+92 306 3044889</a></p></div></div>
-<div class="contact-method"><i class="bx bx-map"></i><div><h4>Location</h4><p>Pakistan</p></div></div>
-</div>
-<div class="social-grid">
-<a class="social-card" href="https://github.com/abrazzaq02" rel="noopener noreferrer" target="_blank"><i class="bx bxl-github"></i><span>GitHub</span></a>
-<a class="social-card" href="https://linkedin.com/in/abdul-razaque-744a782a1/" rel="noopener noreferrer" target="_blank"><i class="bx bxl-linkedin"></i><span>LinkedIn</span></a>
-<a class="social-card" href="https://x.com/razaq303" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-7.4L5.5 22H2.3l7.3-8.4L1.9 2h6.5l4.5 6.8L18.9 2Zm-1.1 18h1.7L7.4 3.9H5.6L17.8 20Z"/></svg><span>X</span></a>
-<a class="social-card" href="https://www.instagram.com/razzaq_khan7?cplk=MTc1bDk1bmk0cjZ2aA==" rel="noopener noreferrer" target="_blank"><i class="bx bxl-instagram"></i><span>Instagram</span></a>
-<a class="social-card" href="mailto:f23ari02@aror.edu.pk"><i class="bx bx-envelope"></i><span>Email</span></a>
+<main id="main">
+<!-- =========================================================================
+     HERO / FIRST PAGE
+     ========================================================================= -->
+<section class="hero wrap" id="home">
+  <div class="hero-copy">
+    <span class="eyebrow">AI / ML Developer · Sukkur, Pakistan</span>
 
-</div>
-</div>
-<form class="contact-form" data-email="f23ari02@aror.edu.pk" id="contactForm">
-<div class="form-group"><input name="name" placeholder="Your Name" required="" type="text"/></div>
-<div class="form-group"><input name="email" placeholder="Your Email" required="" type="email"/></div>
-<div class="form-group"><input name="subject" placeholder="Subject" type="text"/></div>
-<div class="form-group"><textarea name="message" placeholder="Your Message" required="" rows="5"></textarea></div>
-<button class="btn btn-primary" type="submit">Compose Email ↗</button>
-</form>
-</div>
-</div>
-</section>
-<!-- Footer -->
-<footer class="footer"><div class="footer-content"><p>© 2026 Abdul Razaque. Built with curiosity, code &amp; a little cosmic energy.</p><p>Crafted with passion for AI &amp; technology.</p></div></footer>
+    <!-- [YOUR FULL NAME] — Edit the text inside <h1> below -->
+    <h1 id="heroName" aria-label="Abdul Razaque">Abdul Razaque</h1>
 
-<script defer="True" src="experience.js"></script></body>
+    <!-- [YOUR TITLE] — Edit the title text below -->
+    <p class="tagline" id="tagline" aria-label="Web Developer · AI &amp; Machine Learning">Web Developer <span class="gold">/</span> AI &amp; Machine Learning</p>
+
+    <p class="hero-desc">BS Artificial Intelligence student building practical machine-learning, computer-vision, and generative-AI applications — from raw data to working software.</p>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#contact"><span>Get In Touch ↗</span></a>
+      <a class="btn btn-outline" href="#projects"><span>View My Work</span></a>
+    </div>
+
+    <!-- SOCIAL LINKS WITH OFFICIAL BRAND COLORS -->
+    <div class="hero-social">
+      <a class="hover-icon" href="https://github.com/abrazzaq02" target="_blank" rel="noopener noreferrer" aria-label="GitHub" style="--brand:#FFFFFF"><span class="bicon" data-brand="github"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span></a>
+      <a class="hover-icon" href="https://www.linkedin.com/in/abdul-razaque-744a782a1/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="--brand:#0A66C2"><span class="bicon" data-brand="linkedin"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span></a>
+      <a class="hover-icon" href="https://www.instagram.com/razzaq_khan7" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="--brand:#D62976"><span class="bicon" data-brand="instagram"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></span></a>
+      <a class="hover-icon" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style="--brand:#1877F2"><span class="bicon" data-brand="facebook"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></span></a>
+      <a class="hover-icon" href="https://wa.me/923063044889" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" style="--brand:#25D366"><span class="bicon" data-brand="whatsapp"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span></a>
+      <a class="hover-icon" href="mailto:f23ari02@aror.edu.pk" aria-label="Gmail" style="--brand:#EA4335"><span class="bicon" data-brand="gmail"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg></span></a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="portrait-wrap" data-tilt>
+      <div class="portrait-halo"></div>
+      <div class="portrait-backframe"></div>
+      <!-- [YOUR IMAGE FILE] — Put your image in images/ and update src below -->
+      <div class="portrait"><img src="images/About.png" alt="Abdul Razaque portrait" fetchpriority="high"></div>
+    </div>
+    <span class="chip one">AI <b>/ 01</b></span>
+    <span class="chip two">ML <b>/ 02</b></span>
+    <span class="chip three">CODE <b>/ 03</b></span>
+  </div>
+
+  <div class="scroll-cue" aria-hidden="true">SCROLL<i></i></div>
+</section>
+
+<!-- =========================================================================
+     ABOUT
+     ========================================================================= -->
+<section class="section wrap reveal" id="about">
+  <div class="section-head">
+    <span class="kicker" data-split="chars">01 / The Story</span>
+    <h2 data-split="chars">About Me</h2>
+    <div class="rule"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p data-split="words">I'm Abdul Razaque, a BS Artificial Intelligence student at Aror University in Sukkur, Pakistan, expected to graduate in 2027. I build hands-on AI systems and care about measurable results.</p>
+      <p data-split="words">My work spans machine learning, computer vision, deep learning, and generative AI. I use Python, Scikit-Learn, OpenCV, PyTorch, and FastAPI to take ideas from experiments to working applications.</p>
+      <p data-split="words">I've completed internships, built practical projects, and taken part in AI hackathons, student events, and community initiatives.</p>
+      <div class="stats">
+        <div class="stat tilt" data-tilt data-stagger style="--stagger-d:0ms"><b>04</b><span>Featured Projects</span></div>
+        <div class="stat tilt" data-tilt data-stagger style="--stagger-d:90ms"><b>10+</b><span>Certificates</span></div>
+        <div class="stat tilt" data-tilt data-stagger style="--stagger-d:180ms"><b>2027</b><span>Graduation</span></div>
+      </div>
+    </div>
+    <div class="about-card card tilt" data-tilt data-stagger style="--stagger-d:120ms">
+      <h3 data-split="chars">Built Different.</h3>
+      <p data-split="words">Curiosity first, code second. I like turning messy, real-world problems into clean, useful products.</p>
+      <div class="perk">
+        <span class="num">01</span>
+        <div>
+          <h4>AI Product Thinking</h4>
+          <p data-split="words">Practical AI with user-focused design and measurable outcomes.</p>
+        </div>
+      </div>
+      <div class="perk">
+        <span class="num">02</span>
+        <div>
+          <h4>ML &amp; Automation</h4>
+          <p data-split="words">Reliable pipelines, trained models, and data-driven systems.</p>
+        </div>
+      </div>
+      <div class="perk">
+        <span class="num">03</span>
+        <div>
+          <h4>Clean Development</h4>
+          <p data-split="words">Fast APIs, sharp interfaces, and maintainable code.</p>
+        </div>
+      </div>
+      <div class="tag-strip"><span>Python</span><span>OpenCV</span><span>PyTorch</span><span>FastAPI</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================================
+     SKILLS — Real Simple Icons with Official Brand Colors
+     ========================================================================= -->
+<section class="section wrap reveal" id="skills">
+  <div class="section-head">
+    <span class="kicker" data-split="chars">02 / The Arsenal</span>
+    <h2 data-split="chars">Skills &amp; Tools</h2>
+    <div class="rule"></div>
+    <p class="lead" data-split="words">The stack I reach for — from the first line of HTML to the final deployed model.</p>
+  </div>
+  <div class="skills-grid">
+    <article class="skill-card card tilt" data-tilt data-stagger style="--stagger-d:0ms">
+      <h3 data-split="chars">Frontend</h3>
+      <div class="skill-list">
+        <div class="skill" style="--brand:#E34F26"><span class="bicon" data-brand="html5"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/></svg></span><small>HTML5</small></div>
+        <div class="skill" style="--brand:#1572B8"><span class="bicon" data-brand="css3"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414z"/></svg></span><small>CSS3</small></div>
+        <div class="skill" style="--brand:#F7DF1E"><span class="bicon" data-brand="javascript"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/></svg></span><small>JavaScript</small></div>
+        <div class="skill" style="--brand:#61DAFB"><span class="bicon" data-brand="react"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"/></svg></span><small>React</small></div>
+      </div>
+    </article>
+
+    <article class="skill-card card tilt" data-tilt data-stagger style="--stagger-d:90ms">
+      <h3 data-split="chars">Backend &amp; Data</h3>
+      <div class="skill-list">
+        <div class="skill" style="--brand:#5FA04E"><span class="bicon" data-brand="nodedotjs"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.998,24c-0.321,0-0.641-0.084-0.922-0.247l-2.936-1.737c-0.438-0.245-0.224-0.332-0.08-0.383 c0.585-0.203,0.703-0.25,1.328-0.604c0.065-0.037,0.151-0.023,0.218,0.017l2.256,1.339c0.082,0.045,0.197,0.045,0.272,0l8.795-5.076 c0.082-0.047,0.134-0.141,0.134-0.238V6.921c0-0.099-0.053-0.192-0.137-0.242l-8.791-5.072c-0.081-0.047-0.189-0.047-0.271,0 L3.075,6.68C2.99,6.729,2.936,6.825,2.936,6.921v10.15c0,0.097,0.054,0.189,0.139,0.235l2.409,1.392 c1.307,0.654,2.108-0.116,2.108-0.89V7.787c0-0.142,0.114-0.253,0.256-0.253h1.115c0.139,0,0.255,0.112,0.255,0.253v10.021 c0,1.745-0.95,2.745-2.604,2.745c-0.508,0-0.909,0-2.026-0.551L2.28,18.675c-0.57-0.329-0.922-0.945-0.922-1.604V6.921 c0-0.659,0.353-1.275,0.922-1.603l8.795-5.082c0.557-0.315,1.296-0.315,1.848,0l8.794,5.082c0.57,0.329,0.924,0.944,0.924,1.603 v10.15c0,0.659-0.354,1.273-0.924,1.604l-8.794,5.078C12.643,23.916,12.324,24,11.998,24z M19.099,13.993 c0-1.9-1.284-2.406-3.987-2.763c-2.731-0.361-3.009-0.548-3.009-1.187c0-0.528,0.235-1.233,2.258-1.233 c1.807,0,2.473,0.389,2.747,1.607c0.024,0.115,0.129,0.199,0.247,0.199h1.141c0.071,0,0.138-0.031,0.186-0.081 c0.048-0.054,0.074-0.123,0.067-0.196c-0.177-2.098-1.571-3.076-4.388-3.076c-2.508,0-4.004,1.058-4.004,2.833 c0,1.925,1.488,2.457,3.895,2.695c2.88,0.282,3.103,0.703,3.103,1.269c0,0.983-0.789,1.402-2.642,1.402 c-2.327,0-2.839-0.584-3.011-1.742c-0.02-0.124-0.126-0.215-0.253-0.215h-1.137c-0.141,0-0.254,0.112-0.254,0.253 c0,1.482,0.806,3.248,4.655,3.248C17.501,17.007,19.099,15.91,19.099,13.993z"/></svg></span><small>Node.js</small></div>
+        <div class="skill" style="--brand:#3776AB"><span class="bicon" data-brand="python"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.858 0c-.978.005-1.913.088-2.736.234C6.7.662 6.26 1.558 6.26 3.21v2.182h5.725v.727H4.111c-1.664 0-3.121 1-3.577 2.903-.526 2.181-.549 3.542 0 5.82.407 1.694 1.379 2.902 3.043 2.902h1.969v-2.616c0-1.89 1.635-3.557 3.576-3.557h5.72c1.591 0 2.862-1.31 2.862-2.91v-5.45c0-1.553-1.309-2.718-2.863-2.977A18 18 0 0 0 11.858 0M8.762 1.755c.591 0 1.074.491 1.074 1.095 0 .601-.483 1.087-1.074 1.087A1.08 1.08 0 0 1 7.688 2.85c0-.604.48-1.095 1.074-1.095m9.656 4.364v2.543c0 1.971-1.671 3.63-3.577 3.63H9.122c-1.566 0-2.862 1.34-2.862 2.91v5.452c0 1.551 1.349 2.464 2.862 2.91 1.813.532 3.55.628 5.72 0 1.44-.418 2.862-1.258 2.862-2.91V18.47h-5.719v-.727h8.582c1.664 0 2.284-1.16 2.862-2.903.598-1.793.573-3.518 0-5.819-.41-1.656-1.196-2.903-2.862-2.903zm-3.216 13.807a1.08 1.08 0 0 1 1.074 1.088c0 .604-.48 1.094-1.074 1.094-.592 0-1.075-.49-1.075-1.094 0-.601.483-1.088 1.075-1.088"/></svg></span><small>Python</small></div>
+        <div class="skill" style="--brand:#009688"><span class="bicon" data-brand="fastapi"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .0387C5.3729.0384.0003 5.3931 0 11.9988c-.001 6.6066 5.372 11.9628 12 11.9625 6.628.0003 12.001-5.3559 12-11.9625-.0003-6.6057-5.3729-11.9604-12-11.96m-.829 5.4153h7.55l-7.5805 5.3284h5.1828L5.279 18.5436q2.9466-6.5444 5.892-13.0896"/></svg></span><small>FastAPI</small></div>
+        <div class="skill" style="--brand:#4169E1"><span class="bicon" data-brand="postgresql"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5594 14.7228a.5269.5269 0 0 0-.0563-.1191c-.139-.2632-.4768-.3418-1.0074-.2321-1.6533.3411-2.2935.1312-2.5256-.0191 1.342-2.0482 2.445-4.522 3.0411-6.8297.2714-1.0507.7982-3.5237.1222-4.7316a1.5641 1.5641 0 0 0-.1509-.235C21.6931.9086 19.8007.0248 17.5099.0005c-1.4947-.0158-2.7705.3461-3.1161.4794a9.449 9.449 0 0 0-.5159-.0816 8.044 8.044 0 0 0-1.3114-.1278c-1.1822-.0184-2.2038.2642-3.0498.8406-.8573-.3211-4.7888-1.645-7.2219.0788C.9359 2.1526.3086 3.8733.4302 6.3043c.0409.818.5069 3.334 1.2423 5.7436.4598 1.5065.9387 2.7019 1.4334 3.582.553.9942 1.1259 1.5933 1.7143 1.7895.4474.1491 1.1327.1441 1.8581-.7279.8012-.9635 1.5903-1.8258 1.9446-2.2069.4351.2355.9064.3625 1.39.3772a.0569.0569 0 0 0 .0004.0041 11.0312 11.0312 0 0 0-.2472.3054c-.3389.4302-.4094.5197-1.5002.7443-.3102.064-1.1344.2339-1.1464.8115-.0025.1224.0329.2309.0919.3268.2269.4231.9216.6097 1.015.6331 1.3345.3335 2.5044.092 3.3714-.6787-.017 2.231.0775 4.4174.3454 5.0874.2212.5529.7618 1.9045 2.4692 1.9043.2505 0 .5263-.0291.8296-.0941 1.7819-.3821 2.5557-1.1696 2.855-2.9059.1503-.8707.4016-2.8753.5388-4.1012.0169-.0703.0357-.1207.057-.1362.0007-.0005.0697-.0471.4272.0307a.3673.3673 0 0 0 .0443.0068l.2539.0223.0149.001c.8468.0384 1.9114-.1426 2.5312-.4308.6438-.2988 1.8057-1.0323 1.5951-1.6698zM2.371 11.8765c-.7435-2.4358-1.1779-4.8851-1.2123-5.5719-.1086-2.1714.4171-3.6829 1.5623-4.4927 1.8367-1.2986 4.8398-.5408 6.108-.13-.0032.0032-.0066.0061-.0098.0094-2.0238 2.044-1.9758 5.536-1.9708 5.7495-.0002.0823.0066.1989.0162.3593.0348.5873.0996 1.6804-.0735 2.9184-.1609 1.1504.1937 2.2764.9728 3.0892.0806.0841.1648.1631.2518.2374-.3468.3714-1.1004 1.1926-1.9025 2.1576-.5677.6825-.9597.5517-1.0886.5087-.3919-.1307-.813-.5871-1.2381-1.3223-.4796-.839-.9635-2.0317-1.4155-3.5126zm6.0072 5.0871c-.1711-.0428-.3271-.1132-.4322-.1772.0889-.0394.2374-.0902.4833-.1409 1.2833-.2641 1.4815-.4506 1.9143-1.0002.0992-.126.2116-.2687.3673-.4426a.3549.3549 0 0 0 .0737-.1298c.1708-.1513.2724-.1099.4369-.0417.156.0646.3078.26.3695.4752.0291.1016.0619.2945-.0452.4444-.9043 1.2658-2.2216 1.2494-3.1676 1.0128zm2.094-3.988-.0525.141c-.133.3566-.2567.6881-.3334 1.003-.6674-.0021-1.3168-.2872-1.8105-.8024-.6279-.6551-.9131-1.5664-.7825-2.5004.1828-1.3079.1153-2.4468.079-3.0586-.005-.0857-.0095-.1607-.0122-.2199.2957-.2621 1.6659-.9962 2.6429-.7724.4459.1022.7176.4057.8305.928.5846 2.7038.0774 3.8307-.3302 4.7363-.084.1866-.1633.3629-.2311.5454zm7.3637 4.5725c-.0169.1768-.0358.376-.0618.5959l-.146.4383a.3547.3547 0 0 0-.0182.1077c-.0059.4747-.054.6489-.115.8693-.0634.2292-.1353.4891-.1794 1.0575-.11 1.4143-.8782 2.2267-2.4172 2.5565-1.5155.3251-1.7843-.4968-2.0212-1.2217a6.5824 6.5824 0 0 0-.0769-.2266c-.2154-.5858-.1911-1.4119-.1574-2.5551.0165-.5612-.0249-1.9013-.3302-2.6462.0044-.2932.0106-.5909.019-.8918a.3529.3529 0 0 0-.0153-.1126 1.4927 1.4927 0 0 0-.0439-.208c-.1226-.4283-.4213-.7866-.7797-.9351-.1424-.059-.4038-.1672-.7178-.0869.067-.276.1831-.5875.309-.9249l.0529-.142c.0595-.16.134-.3257.213-.5012.4265-.9476 1.0106-2.2453.3766-5.1772-.2374-1.0981-1.0304-1.6343-2.2324-1.5098-.7207.0746-1.3799.3654-1.7088.5321a5.6716 5.6716 0 0 0-.1958.1041c.0918-1.1064.4386-3.1741 1.7357-4.4823a4.0306 4.0306 0 0 1 .3033-.276.3532.3532 0 0 0 .1447-.0644c.7524-.5706 1.6945-.8506 2.802-.8325.4091.0067.8017.0339 1.1742.081 1.939.3544 3.2439 1.4468 4.0359 2.3827.8143.9623 1.2552 1.9315 1.4312 2.4543-1.3232-.1346-2.2234.1268-2.6797.779-.9926 1.4189.543 4.1729 1.2811 5.4964.1353.2426.2522.4522.2889.5413.2403.5825.5515.9713.7787 1.2552.0696.087.1372.1714.1885.245-.4008.1155-1.1208.3825-1.0552 1.717-.0123.1563-.0423.4469-.0834.8148-.0461.2077-.0702.4603-.0994.7662zm.8905-1.6211c-.0405-.8316.2691-.9185.5967-1.0105a2.8566 2.8566 0 0 0 .135-.0406 1.202 1.202 0 0 0 .1342.103c.5703.3765 1.5823.4213 3.0068.1344-.2016.1769-.5189.3994-.9533.6011-.4098.1903-1.0957.333-1.7473.3636-.7197.0336-1.0859-.0807-1.1721-.151zm.5695-9.2712c-.0059.3508-.0542.6692-.1054 1.0017-.055.3576-.112.7274-.1264 1.1762-.0142.4368.0404.8909.0932 1.3301.1066.887.216 1.8003-.2075 2.7014a3.5272 3.5272 0 0 1-.1876-.3856c-.0527-.1276-.1669-.3326-.3251-.6162-.6156-1.1041-2.0574-3.6896-1.3193-4.7446.3795-.5427 1.3408-.5661 2.1781-.463zm.2284 7.0137a12.3762 12.3762 0 0 0-.0853-.1074l-.0355-.0444c.7262-1.1995.5842-2.3862.4578-3.4385-.0519-.4318-.1009-.8396-.0885-1.2226.0129-.4061.0666-.7543.1185-1.0911.0639-.415.1288-.8443.1109-1.3505.0134-.0531.0188-.1158.0118-.1902-.0457-.4855-.5999-1.938-1.7294-3.253-.6076-.7073-1.4896-1.4972-2.6889-2.0395.5251-.1066 1.2328-.2035 2.0244-.1859 2.0515.0456 3.6746.8135 4.8242 2.2824a.908.908 0 0 1 .0667.1002c.7231 1.3556-.2762 6.2751-2.9867 10.5405zm-8.8166-6.1162c-.025.1794-.3089.4225-.6211.4225a.5821.5821 0 0 1-.0809-.0056c-.1873-.026-.3765-.144-.5059-.3156-.0458-.0605-.1203-.178-.1055-.2844.0055-.0401.0261-.0985.0925-.1488.1182-.0894.3518-.1226.6096-.0867.3163.0441.6426.1938.6113.4186zm7.9305-.4114c.0111.0792-.049.201-.1531.3102-.0683.0717-.212.1961-.4079.2232a.5456.5456 0 0 1-.075.0052c-.2935 0-.5414-.2344-.5607-.3717-.024-.1765.2641-.3106.5611-.352.297-.0414.6111.0088.6356.1851z"/></svg></span><small>PostgreSQL</small></div>
+      </div>
+    </article>
+
+    <article class="skill-card card tilt" data-tilt data-stagger style="--stagger-d:180ms">
+      <h3 data-split="chars">AI &amp; ML</h3>
+      <div class="skill-list">
+        <div class="skill" style="--brand:#EE4C2C"><span class="bicon" data-brand="pytorch"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.005 0L4.952 7.053a9.865 9.865 0 000 14.022 9.866 9.866 0 0014.022 0c3.984-3.9 3.986-10.205.085-14.023l-1.744 1.743c2.904 2.905 2.904 7.634 0 10.538s-7.634 2.904-10.538 0-2.904-7.634 0-10.538l4.647-4.646.582-.665zm3.568 3.899a1.327 1.327 0 00-1.327 1.327 1.327 1.327 0 001.327 1.328A1.327 1.327 0 0016.9 5.226 1.327 1.327 0 0015.573 3.9z"/></svg></span><small>PyTorch</small></div>
+        <div class="skill" style="--brand:#FF6F00"><span class="bicon" data-brand="tensorflow"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M1.292 5.856L11.54 0v24l-4.095-2.378V7.603l-6.168 3.564.015-5.31zm21.43 5.311l-.014-5.31L12.46 0v24l4.095-2.378V14.87l3.092 1.788-.018-4.618-3.074-1.756V7.603l6.168 3.564z"/></svg></span><small>TensorFlow</small></div>
+        <div class="skill" style="--brand:#F7931E"><span class="bicon" data-brand="scikitlearn"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.601 5.53c-1.91.035-3.981.91-5.63 2.56-2.93 2.93-2.083 8.53-1.088 9.525.805.804 6.595 1.843 9.526-1.088a9.74 9.74 0 0 0 .584-.643c.043-.292.205-.66.489-1.106a1.848 1.848 0 0 1-.537.176c-.144.265-.37.55-.676.855-.354.335-.607.554-.76.656a.795.795 0 0 1-.437.152c-.35 0-.514-.308-.494-.924-.22.316-.425.549-.612.7a.914.914 0 0 1-.578.224c-.194 0-.36-.09-.496-.273a1.03 1.03 0 0 1-.193-.507 4.016 4.016 0 0 1-.726.583c-.224.132-.47.197-.74.197-.3 0-.543-.096-.727-.288a.978.978 0 0 1-.257-.524v.004c-.3.276-.564.48-.79.611a1.295 1.295 0 0 1-.649.197.693.693 0 0 1-.571-.275c-.145-.183-.218-.43-.218-.739 0-.464.101-1.02.302-1.67.201-.65.445-1.25.733-1.797l.842-.312a.21.21 0 0 1 .06-.013c.063 0 .116.047.157.14.04.095.061.221.061.38 0 .451-.104.888-.312 1.31-.207.422-.532.873-.974 1.352-.018.23-.027.388-.027.474 0 .193.036.345.106.458.071.113.165.169.282.169a.71.71 0 0 0 .382-.13c.132-.084.333-.26.602-.523.028-.418.187-.798.482-1.142.324-.38.685-.569 1.08-.569.206 0 .37.054.494.16a.524.524 0 0 1 .186.417c0 .458-.486.829-1.459 1.114.088.43.32.646.693.646a.807.807 0 0 0 .417-.117c.129-.076.321-.243.575-.497.032-.252.118-.495.259-.728.182-.3.416-.544.701-.73.285-.185.537-.278.756-.278.276 0 .47.127.58.381l.677-.374h.186l-.292.971c-.15.488-.226.823-.226 1.004 0 .19.067.285.202.285.086 0 .181-.045.285-.137.104-.092.25-.232.437-.42v.001c.143-.155.274-.32.392-.494-.19-.084-.285-.21-.285-.375 0-.17.058-.352.174-.545.116-.194.275-.29.479-.29.172 0 .258.088.258.265 0 .139-.05.338-.149.596.367-.04.687-.32.961-.842l.228-.01c1.059-2.438.828-5.075-.83-6.732-1.019-1.02-2.408-1.5-3.895-1.471zm4.725 8.203a8.938 8.938 0 0 1-1.333 2.151 1.09 1.09 0 0 0-.012.147c0 .168.047.309.14.423.092.113.206.17.34.17.296 0 .714-.264 1.254-.787-.001.04-.003.08-.003.121 0 .146.012.368.036.666l.733-.172c0-.2.003-.357.01-.474.01-.157.033-.33.066-.517.02-.11.07-.216.152-.315l.186-.216a5.276 5.276 0 0 1 .378-.397c.062-.055.116-.099.162-.13a.26.26 0 0 1 .123-.046c.055 0 .083.035.083.106 0 .07-.052.236-.156.497-.194.486-.292.848-.292 1.084 0 .175.046.314.136.418a.45.45 0 0 0 .358.155c.365 0 .803-.269 1.313-.808v-.381c-.361.426-.623.64-.784.64-.109 0-.163-.067-.163-.2 0-.1.065-.316.195-.65.19-.486.285-.836.285-1.048a.464.464 0 0 0-.112-.319.36.36 0 0 0-.282-.127c-.165 0-.354.077-.567.233-.213.156-.5.436-.863.84.053-.262.165-.622.335-1.08l-.809.156a6.54 6.54 0 0 0-.399 1.074c-.04.156-.07.316-.092.48a7.447 7.447 0 0 1-.49.45.38.38 0 0 1-.229.08.208.208 0 0 1-.174-.082.352.352 0 0 1-.064-.222c0-.1.019-.214.056-.343.038-.13.12-.373.249-.731l.308-.849zm-17.21-2.927c-.863-.016-1.67.263-2.261.854-1.352 1.352-1.07 3.827.631 5.527 1.7 1.701 4.95 1.21 5.527.632.467-.466 1.07-3.827-.631-5.527-.957-.957-2.158-1.465-3.267-1.486zm12.285.358h.166v.21H15.4zm.427 0h.166v.865l.46-.455h.195l-.364.362.428.684h-.198l-.357-.575-.164.166v.41h-.166zm1.016 0h.166v.21h-.166zm.481.122h.166v.288h.172v.135h-.172v.717c0 .037.006.062.02.075.012.013.037.02.074.02a.23.23 0 0 0 .078-.01v.141a.802.802 0 0 1-.136.014.23.23 0 0 1-.15-.043.15.15 0 0 1-.052-.123v-.79h-.141v-.136h.141zm-3.562.258c.081 0 .15.012.207.038.057.024.1.061.13.11s.045.106.045.173h-.176c-.006-.111-.075-.167-.208-.167a.285.285 0 0 0-.164.041.134.134 0 0 0-.06.117c0 .035.015.065.045.088.03.024.08.044.15.06l.16.039a.47.47 0 0 1 .224.105c.047.046.07.108.07.186a.3.3 0 0 1-.052.175.327.327 0 0 1-.152.116.585.585 0 0 1-.226.041c-.136 0-.24-.03-.309-.088-.069-.059-.105-.149-.109-.269h.176c.004.037.01.065.017.084a.166.166 0 0 0 .034.054c.044.043.112.065.204.065a.31.31 0 0 0 .177-.045.139.139 0 0 0 .067-.119.116.116 0 0 0-.038-.09.287.287 0 0 0-.124-.055l-.156-.038a1.248 1.248 0 0 1-.159-.05.359.359 0 0 1-.098-.061.22.22 0 0 1-.058-.083.32.32 0 0 1-.016-.108c0-.096.036-.174.109-.232a.45.45 0 0 1 .29-.087zm1.035 0a.46.46 0 0 1 .202.043.351.351 0 0 1 .187.212.577.577 0 0 1 .023.126h-.168a.256.256 0 0 0-.078-.168.242.242 0 0 0-.17-.06.248.248 0 0 0-.155.05.306.306 0 0 0-.1.144.662.662 0 0 0-.034.224.58.58 0 0 0 .035.214.299.299 0 0 0 .101.135.261.261 0 0 0 .157.048c.142 0 .227-.084.256-.252h.167a.519.519 0 0 1-.065.22.35.35 0 0 1-.146.138.464.464 0 0 1-.216.048.448.448 0 0 1-.246-.066.441.441 0 0 1-.161-.192.703.703 0 0 1-.057-.293c0-.085.01-.163.032-.233a.522.522 0 0 1 .095-.182.403.403 0 0 1 .15-.117.453.453 0 0 1 .191-.04zm.603.03h.166v1.046H15.4zm1.443 0h.166v1.046h-.166zm-5.05.618c-.08 0-.2.204-.356.611-.155.407-.308.977-.459 1.71.281-.312.509-.662.683-1.05.175-.387.262-.72.262-.999a.455.455 0 0 0-.036-.197c-.025-.05-.056-.075-.093-.075zm4.662 1.797c-.221 0-.431.188-.629.563-.197.376-.296.722-.296 1.038 0 .12.029.216.088.29a.273.273 0 0 0 .223.111c.221 0 .43-.188.625-.565.196-.377.294-.725.294-1.043a.457.457 0 0 0-.083-.29.269.269 0 0 0-.222-.104zm-2.848.007c-.146 0-.285.11-.417.333-.133.222-.2.51-.2.866.566-.159.849-.452.849-.881 0-.212-.077-.318-.232-.318Z"/></svg></span><small>Scikit-Learn</small></div>
+        <div class="skill" style="--brand:#5C3EE8"><span class="bicon" data-brand="opencv"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.8992.8525C8.735.8525 6.17 3.4175 6.17 6.5817c0 2.102 1.1321 3.9398 2.8198 4.9366l1.6412-2.7849c.0411-.0699.0176-.1593-.0495-.2048-.6233-.4227-1.0328-1.137-1.0328-1.947 0-1.298 1.0524-2.3504 2.3505-2.3504 1.2981 0 2.3505 1.0524 2.3505 2.3505 0 .8098-.4095 1.5242-1.0328 1.947-.0671.0454-.0907.1348-.0495.2047l1.6414 2.785c1.6878-.9969 2.8199-2.8346 2.8199-4.9367 0-3.1642-2.5653-5.7292-5.7295-5.7292zm-6.17 10.8366C2.565 11.6891 0 14.2541 0 17.4183c0 3.1642 2.565 5.7292 5.7292 5.7292 3.1798 0 5.8074-2.6995 5.7275-5.8762H8.2313c-.0847 0-.1513.0717-.1519.1564-.0082 1.266-1.0644 2.3411-2.3502 2.3411-1.2981 0-2.3505-1.0524-2.3505-2.3505 0-1.2982 1.0524-2.3505 2.3505-2.3505.34 0 .663.0724.9547.2022.0713.0318.1566.0077.1962-.0595l1.6464-2.7935c-.8273-.4636-1.7815-.7279-2.7973-.7279zm15.4424.7614l-1.6366 2.7878c-.041.07-.0172.1594.05.2048.624.4217 1.0348 1.1354 1.0363 1.9452.0022 1.298-1.0483 2.352-2.3465 2.3542-1.298.0023-2.3523-1.0482-2.3545-2.3462-.0015-.8098.4068-1.5248 1.0294-1.9486.067-.0457.0905-.1353.0492-.2051l-1.6464-2.7818c-1.6859.9998-2.8146 2.8394-2.811 4.9415.0056 3.1641 2.575 5.7248 5.7393 5.7192 3.1641-.0054 5.7246-2.575 5.7192-5.7392-.0037-2.1022-1.139-3.938-2.8284-4.9318z"/></svg></span><small>OpenCV</small></div>
+      </div>
+    </article>
+
+    <article class="skill-card card tilt" data-tilt data-stagger style="--stagger-d:270ms">
+      <h3 data-split="chars">Workflow</h3>
+      <div class="skill-list">
+        <div class="skill" style="--brand:#F03C2E"><span class="bicon" data-brand="git"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.09 23.549a1.54 1.54 0 0 1-2.18 0L.451 13.089a1.54 1.54 0 0 1 0-2.179l7.191-7.19 2.733 2.733a1.85 1.85 0 0 0 .964 2.326v6.66a1.849 1.849 0 1 0 1.54 0V8.957l2.508 2.508a1.85 1.85 0 1 0 1.09-1.09l-2.634-2.634a1.85 1.85 0 0 0-2.378-2.377L8.73 2.63 10.91.451a1.54 1.54 0 0 1 2.179 0l10.459 10.46a1.54 1.54 0 0 1 0 2.179z"/></svg></span><small>Git</small></div>
+        <div class="skill" style="--brand:#FFFFFF"><span class="bicon" data-brand="github"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span><small>GitHub</small></div>
+        <div class="skill" style="--brand:#2496ED"><span class="bicon" data-brand="docker"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z"/></svg></span><small>Docker</small></div>
+        <div class="skill" style="--brand:#FF4B4B"><span class="bicon" data-brand="streamlit"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.673 11.32l6.862-3.618c.233-.136.554.12.442.387L20.463 17.1zm-8.556-.229l3.473-5.187c.203-.328.578-.316.793-.028l7.886 11.75zm-3.375 7.25c-.28 0-.835-.284-.993-.716l-3.72-9.46c-.118-.331.139-.614.48-.464l19.474 10.306c-.149.147-.453.337-.72.334z"/></svg></span><small>Streamlit</small></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- =========================================================================
+     PROJECTS
+     ========================================================================= -->
+<section class="section wrap reveal" id="projects">
+  <div class="section-head">
+    <span class="kicker" data-split="chars">03 / Selected Work</span>
+    <h2 data-split="chars">Featured Projects</h2>
+    <div class="rule"></div>
+    <p class="lead" data-split="words">A few builds where data, design, and code come together.</p>
+  </div>
+  <div class="projects-grid">
+    <article class="project card tilt" data-tilt data-no="01" data-stagger style="--stagger-d:0ms">
+      <span class="meta">Expert System</span>
+      <h3 data-split="chars">Smart Career Counseling</h3>
+      <p data-split="words">A rule-based career recommendation tool with forward chaining, skill-gap analysis, and personalized roadmaps across 10 career domains.</p>
+      <div class="tags"><span>Python</span><span>Streamlit</span><span>Expert Systems</span></div>
+      <a class="project-link" href="https://github.com/abrazzaq02/AI-Based-Smart-Career-Counseling-" target="_blank" rel="noopener noreferrer">Explore repository ↗</a>
+    </article>
+
+    <article class="project card tilt" data-tilt data-no="02" data-stagger style="--stagger-d:90ms">
+      <span class="meta">AutoML</span>
+      <h3 data-split="chars">AutoML for Small Businesses</h3>
+      <p data-split="words">Automates preprocessing, compares five classification algorithms, and presents evaluation metrics and charts for non-technical users.</p>
+      <div class="tags"><span>Python</span><span>Scikit-Learn</span><span>Pandas</span></div>
+      <a class="project-link" href="https://github.com/abrazzaq02/AutoMl-For-Small-Bussiness" target="_blank" rel="noopener noreferrer">Explore repository ↗</a>
+    </article>
+
+    <article class="project card tilt" data-tilt data-no="03" data-stagger style="--stagger-d:180ms">
+      <span class="meta">Computer Vision</span>
+      <h3 data-split="chars">Face Detection Attendance</h3>
+      <p data-split="words">Real-time attendance tracking with OpenCV, face detection, lighting preprocessing, and timestamped SQL records.</p>
+      <div class="tags"><span>Python</span><span>OpenCV</span><span>SQL</span></div>
+      <a class="project-link" href="https://github.com/abrazzaq02/Face-Detection-Attendence-System" target="_blank" rel="noopener noreferrer">Explore repository ↗</a>
+    </article>
+
+    <article class="project card tilt" data-tilt data-no="04" data-stagger style="--stagger-d:270ms">
+      <span class="meta">Space Health</span>
+      <h3 data-split="chars">ASTROCARE AI</h3>
+      <p data-split="words">A crew-health research prototype with simulated telemetry, explainable trends, space-weather context, and a mission simulator.</p>
+      <div class="tags"><span>React</span><span>FastAPI</span><span>AI</span></div>
+      <a class="project-link" href="https://github.com/abrazzaq02/ASTROCARE-AI" target="_blank" rel="noopener noreferrer">Explore repository ↗</a>
+    </article>
+  </div>
+</section>
+
+<!-- =========================================================================
+     EXPERIENCE
+     ========================================================================= -->
+<section class="section wrap reveal" id="experience">
+  <div class="section-head">
+    <span class="kicker" data-split="chars">04 / The Journey</span>
+    <h2 data-split="chars">Experience</h2>
+    <div class="rule"></div>
+    <p class="lead" data-split="words">Learning, building, and showing up — one milestone at a time.</p>
+  </div>
+  <div class="timeline">
+    <article class="timeline-item" data-stagger style="--stagger-d:0ms">
+      <time>Nov 2026</time>
+      <h3 data-split="chars">NASA Space Apps Challenge</h3>
+      <span class="org">Galactic Problem Solver</span>
+      <p data-split="words">Recognized for participation and building solutions to address real challenges on Earth and in space.</p>
+    </article>
+    <article class="timeline-item" data-stagger style="--stagger-d:90ms">
+      <time>Jun – Jul 2026</time>
+      <h3 data-split="chars">Business Technology Intern</h3>
+      <span class="org">Alkaram Textile Mills (Pvt.) Ltd.</span>
+      <p data-split="words">Completed an industry internship in the Business Technology department, applying software and analytics to enterprise workflows.</p>
+    </article>
+    <article class="timeline-item" data-stagger style="--stagger-d:180ms">
+      <time>Jul – Sep 2025</time>
+      <h3 data-split="chars">Machine Learning Intern</h3>
+      <span class="org">Elevvo Pathways</span>
+      <p data-split="words">Built a music-genre CNN + MFCC classifier, delivered machine-learning pipelines, and documented technical outcomes.</p>
+    </article>
+    <article class="timeline-item" data-stagger style="--stagger-d:270ms">
+      <time>2025</time>
+      <h3 data-split="chars">Blockchain Development Intern</h3>
+      <span class="org">Micro IT Industry</span>
+      <p data-split="words">Completed a practical blockchain development internship exploring decentralized applications and smart contracts.</p>
+    </article>
+    <article class="timeline-item" data-stagger style="--stagger-d:360ms">
+      <time>2023 – 2027</time>
+      <h3 data-split="chars">BS Artificial Intelligence</h3>
+      <span class="org">Aror University, Sukkur</span>
+      <p data-split="words">Coursework in machine learning, deep learning, computer vision, and generative AI. Expected graduation May 2027.</p>
+    </article>
+  </div>
+</section>
+
+<!-- =========================================================================
+     CONTACT
+     ========================================================================= -->
+<section class="section wrap reveal" id="contact">
+  <div class="section-head">
+    <span class="kicker" data-split="chars">05 / Get In Touch</span>
+    <h2 data-split="chars">Let's Connect</h2>
+    <div class="rule"></div>
+    <p class="lead" data-split="words">Have a project, an AI idea, or an opportunity? My inbox is always open.</p>
+  </div>
+  <div class="contact-grid">
+    <div data-stagger style="--stagger-d:0ms">
+      <h3 data-split="chars">Open For Opportunities.</h3>
+      <div class="contact-method" style="--brand:#EA4335">
+        <span class="bicon" data-brand="gmail"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg></span>
+        <div><h4>Gmail</h4><p><a href="mailto:f23ari02@aror.edu.pk">f23ari02@aror.edu.pk</a></p></div>
+      </div>
+      <div class="contact-method" style="--brand:#25D366">
+        <span class="bicon" data-brand="whatsapp"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span>
+        <div><h4>WhatsApp</h4><p><a href="https://wa.me/923063044889" target="_blank" rel="noopener noreferrer">+92 306 3044889</a></p></div>
+      </div>
+      <div class="contact-method" style="--brand:#0A66C2">
+        <span class="bicon" data-brand="linkedin"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
+        <div><h4>LinkedIn</h4><p><a href="https://www.linkedin.com/in/abdul-razaque-744a782a1/" target="_blank" rel="noopener noreferrer">abdul-razaque-744a782a1</a></p></div>
+      </div>
+      <div class="social-grid">
+        <a class="social-card hover-icon" href="https://github.com/abrazzaq02" target="_blank" rel="noopener noreferrer" style="--brand:#FFFFFF" aria-label="GitHub"><span class="bicon" data-brand="github"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span><span>GitHub</span></a>
+        <a class="social-card hover-icon" href="https://www.linkedin.com/in/abdul-razaque-744a782a1/" target="_blank" rel="noopener noreferrer" style="--brand:#0A66C2" aria-label="LinkedIn"><span class="bicon" data-brand="linkedin"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span><span>LinkedIn</span></a>
+        <a class="social-card hover-icon" href="https://www.instagram.com/razzaq_khan7" target="_blank" rel="noopener noreferrer" style="--brand:#D62976" aria-label="Instagram"><span class="bicon" data-brand="instagram"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></span><span>Instagram</span></a>
+        <a class="social-card hover-icon" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" style="--brand:#1877F2" aria-label="Facebook"><span class="bicon" data-brand="facebook"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></span><span>Facebook</span></a>
+        <a class="social-card hover-icon" href="https://wa.me/923063044889" target="_blank" rel="noopener noreferrer" style="--brand:#25D366" aria-label="WhatsApp"><span class="bicon" data-brand="whatsapp"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span><span>WhatsApp</span></a>
+        <a class="social-card hover-icon" href="mailto:f23ari02@aror.edu.pk" style="--brand:#EA4335" aria-label="Gmail"><span class="bicon" data-brand="gmail"><svg role="img" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg></span><span>Gmail</span></a>
+      </div>
+    </div>
+    <form class="contact-form card" id="contactForm" data-stagger style="--stagger-d:120ms">
+      <div><input name="name" placeholder="Your name" required autocomplete="name"></div>
+      <div><input name="email" type="email" placeholder="Your email" required autocomplete="email"></div>
+      <div><input name="subject" placeholder="Subject"></div>
+      <div><textarea name="message" rows="5" placeholder="Your message" required></textarea></div>
+      <button class="btn btn-primary" type="submit"><span>Send Message ↗</span></button>
+      <p class="form-note">Opens your email app with the message pre-filled. No external server required.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer wrap">
+  <span>© <span id="year">2026</span> Abdul Razaque. All rights reserved.</span>
+  <span>Crafted with black, gold &amp; crimson steel.</span>
+</footer>
+
+<!-- =========================================================================
+     [YOUR AUDIO FILE] — Put your royalty-free / licensed MP3 track here:
+     music/gangster-beat.mp3  (in a "music" folder beside this HTML file)
+     If that file isn't present yet, a built-in dark Web Audio trap beat
+     plays as a live fallback so the player always works out of the box.
+     ========================================================================= -->
+<audio id="beat" src="music/gangster-beat.mp3" loop preload="metadata"></audio>
+<div class="player" id="player" role="group" aria-label="Background music player">
+  <button class="play-btn" id="playBtn" type="button" aria-label="Play music">
+    <svg class="ico-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="ico-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+  </button>
+  <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="player-meta">
+    <b>GANGSTER BEAT</b>
+    <small id="trackStatus">Ready · click play</small>
+  </div>
+  <label class="volume" aria-label="Volume">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
+    <input id="volume" type="range" min="0" max="1" step="0.01" value="0.45" aria-label="Volume">
+  </label>
+</div>
+
+<!-- =========================================================================
+     JAVASCRIPT — Zero external dependencies, fully self-contained
+     ========================================================================= -->
+<script>
+(function(){
+  'use strict';
+  const $ = (s,ctx=document) => ctx.querySelector(s);
+  const $$ = (s,ctx=document) => [...ctx.querySelectorAll(s)];
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  /* -----------------------------------------------------------------------
+     1. PREPARE HERO NAME & TAGLINE (starts when user enters the site)
+     ----------------------------------------------------------------------- */
+  const hero = $('#home');
+  const nameEl = $('#heroName');
+  const fullName = nameEl.textContent.trim();
+  const caret = document.createElement('span');
+  caret.className = 'cursor-caret';
+  caret.setAttribute('aria-hidden','true');
+
+  if(reduced){
+    // Keep text visible immediately when reduced-motion is requested
+  }else{
+    nameEl.textContent = '';
+    nameEl.appendChild(caret);
+  }
+
+  const tag = $('#tagline');
+  if(tag && !reduced){
+    const rawParts = [...tag.childNodes];
+    tag.textContent = '';
+    let wordIdx = 0;
+    const baseDelay = fullName.length * 85 + 160;
+    rawParts.forEach(node=>{
+      if(node.nodeType === 3){
+        node.textContent.trim().split(/\s+/).filter(Boolean).forEach(w=>{
+          const span = document.createElement('span');
+          span.className = 'tw';
+          span.style.setProperty('--d', (baseDelay + wordIdx++ * 110)+'ms');
+          span.textContent = w + '\u00A0';
+          tag.appendChild(span);
+        });
+      }else if(node.nodeType === 1){
+        const span = document.createElement('span');
+        span.className = 'tw ' + node.className;
+        span.style.setProperty('--d', (baseDelay + wordIdx++ * 110)+'ms');
+        span.textContent = node.textContent + '\u00A0';
+        tag.appendChild(span);
+      }
+    });
+  }
+
+  let heroStarted = false;
+  function startHeroReveal(){
+    if(heroStarted) return;
+    heroStarted = true;
+    hero.classList.add('hero-play');
+    if(reduced) return;
+
+    // Reveal name letter-by-letter with drop + flicker while advancing the blinking caret
+    const chars = [...fullName];
+    let i = 0;
+    let wordSpan = document.createElement('span');
+    wordSpan.style.display = 'inline-block';
+    wordSpan.style.whiteSpace = 'nowrap';
+    nameEl.insertBefore(wordSpan, caret);
+
+    function typeNext(){
+      if(i >= chars.length) return;
+      const ch = chars[i++];
+      if(ch === ' '){
+        nameEl.insertBefore(document.createTextNode(' '), caret);
+        wordSpan = document.createElement('span');
+        wordSpan.style.display = 'inline-block';
+        wordSpan.style.whiteSpace = 'nowrap';
+        nameEl.insertBefore(wordSpan, caret);
+      }else{
+        const outer = document.createElement('span');
+        outer.className = 'char';
+        const inner = document.createElement('span');
+        inner.className = 'char-i';
+        inner.textContent = ch;
+        outer.appendChild(inner);
+        wordSpan.appendChild(outer);
+      }
+      if(i < chars.length) setTimeout(typeNext, 85);
+    }
+    typeNext();
+  }
+
+  /* -----------------------------------------------------------------------
+     2. WEB AUDIO SYNTH TRAP BEAT FALLBACK (only used if MP3 isn't added yet)
+     ----------------------------------------------------------------------- */
+  const audio = $('#beat'), player = $('#player'), playBtn = $('#playBtn'), status = $('#trackStatus');
+  const volumeSlider = $('#volume');
+  audio.volume = parseFloat(volumeSlider.value);
+
+  const synthBeat = (function(){
+    let ctx = null, master = null, timer = null, step = 0, running = false;
+    const notes = [110, 0, 130.81, 0, 146.83, 0, 130.81, 116.54];
+    function ensureCtx(){
+      if(!ctx){
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if(!AC) return false;
+        ctx = new AC();
+        master = ctx.createGain();
+        master.gain.value = parseFloat(volumeSlider.value) * 0.45;
+        master.connect(ctx.destination);
+      }
+      if(ctx.state === 'suspended') ctx.resume();
+      return true;
+    }
+    function kick(t){
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = 'sine';
+      o.frequency.setValueAtTime(125, t);
+      o.frequency.exponentialRampToValueAtTime(38, t + 0.16);
+      g.gain.setValueAtTime(0.85, t);
+      g.gain.exponentialRampToValueAtTime(0.001, t + 0.34);
+      o.connect(g); g.connect(master); o.start(t); o.stop(t + 0.35);
+    }
+    function hat(t, open){
+      const len = Math.floor(ctx.sampleRate * (open ? 0.12 : 0.04));
+      const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+      const data = buf.getChannelData(0);
+      for(let i=0;i<len;i++) data[i] = Math.random()*2 - 1;
+      const src = ctx.createBufferSource();
+      src.buffer = buf;
+      const hp = ctx.createBiquadFilter();
+      hp.type = 'highpass'; hp.frequency.value = 7200;
+      const g = ctx.createGain();
+      g.gain.setValueAtTime(open ? 0.16 : 0.1, t);
+      g.gain.exponentialRampToValueAtTime(0.001, t + (open ? 0.12 : 0.04));
+      src.connect(hp); hp.connect(g); g.connect(master);
+      src.start(t);
+    }
+    function snare(t){
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = 'triangle'; o.frequency.setValueAtTime(190, t);
+      g.gain.setValueAtTime(0.28, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
+      o.connect(g); g.connect(master); o.start(t); o.stop(t + 0.13);
+      hat(t, true);
+    }
+    function bell(t, freq){
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = 'triangle'; o.frequency.setValueAtTime(freq * 2, t);
+      g.gain.setValueAtTime(0.14, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.45);
+      o.connect(g); g.connect(master); o.start(t); o.stop(t + 0.46);
+    }
+    function tick(){
+      if(!running) return;
+      const t = ctx.currentTime + 0.02;
+      const s = step % 16;
+      if(s===0 || s===6 || s===10) kick(t);
+      if(s===4 || s===12) snare(t);
+      hat(t, s===14);
+      const n = notes[step % notes.length];
+      if(n && s % 2 === 0) bell(t, n);
+      step++;
+    }
+    return {
+      start(){
+        if(!ensureCtx()) return false;
+        if(running) return true;
+        running = true;
+        tick();
+        timer = setInterval(tick, 185);
+        return true;
+      },
+      stop(){
+        running = false;
+        if(timer){ clearInterval(timer); timer = null; }
+      },
+      setVolume(v){
+        if(master && ctx) master.gain.setValueAtTime(v * 0.45, ctx.currentTime);
+      }
+    };
+  })();
+
+  let mp3Failed = false;
+  audio.addEventListener('error',()=>{ mp3Failed = true; });
+
+  function startMusic(){
+    if(!mp3Failed){
+      const p = audio.play();
+      if(p && typeof p.then === 'function'){
+        return p.then(()=>{
+          player.classList.add('playing');
+          playBtn.setAttribute('aria-label','Pause music');
+          status.textContent = 'Now playing · gangster-beat.mp3';
+        }).catch(()=>{
+          mp3Failed = true;
+          if(synthBeat.start()){
+            player.classList.add('playing');
+            playBtn.setAttribute('aria-label','Pause music');
+            status.textContent = 'Synth beat · add music/gangster-beat.mp3';
+          }
+        });
+      }
+    }
+    if(synthBeat.start()){
+      player.classList.add('playing');
+      playBtn.setAttribute('aria-label','Pause music');
+      status.textContent = 'Synth beat · add music/gangster-beat.mp3';
+    }
+    return Promise.resolve();
+  }
+
+  function pauseMusic(){
+    audio.pause();
+    synthBeat.stop();
+    player.classList.remove('playing');
+    playBtn.setAttribute('aria-label','Play music');
+    status.textContent = 'Paused';
+  }
+
+  playBtn.addEventListener('click',()=>{
+    if(player.classList.contains('playing')) pauseMusic();
+    else startMusic();
+  });
+
+  volumeSlider.addEventListener('input',e=>{
+    const v = parseFloat(e.target.value);
+    audio.volume = v;
+    synthBeat.setVolume(v);
+  });
+
+  /* -----------------------------------------------------------------------
+     3. LOADER + ENTER GATE
+     ----------------------------------------------------------------------- */
+  const loader = $('#loader'), entry = $('#entry'), fill = $('#loadFill'), pct = $('#loadPct');
+
+  if(reduced){
+    loader.classList.add('done');
+    entry.classList.add('done');
+    document.body.classList.remove('locked');
+    startHeroReveal();
+  }else{
+    const start = performance.now(), duration = 1400;
+    (function step(now){
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      fill.style.width = (eased * 100) + '%';
+      pct.textContent = Math.round(eased * 100) + '%';
+      if(t < 1){
+        requestAnimationFrame(step);
+      }else{
+        loader.classList.add('done');
+      }
+    })(performance.now());
+  }
+
+  function enterSite(withMusic){
+    entry.classList.add('done');
+    document.body.classList.remove('locked');
+    setTimeout(startHeroReveal, 160);
+    if(withMusic) startMusic();
+  }
+  $('#enterBtn').addEventListener('click',()=>enterSite(true));
+  $('#skipBtn').addEventListener('click',()=>enterSite(false));
+
+  /* -----------------------------------------------------------------------
+     4. MODE TOGGLE ("Gangster Mode" <-> "Light Mode", saved in memory + storage)
+     ----------------------------------------------------------------------- */
+  const root = document.documentElement;
+  const themeBtn = $('#themeBtn'), modeLabel = $('#modeLabel'), metaTheme = $('#metaThemeColor');
+  let activeTheme = 'dark';
+
+  function applyTheme(theme){
+    activeTheme = theme === 'light' ? 'light' : 'dark';
+    root.dataset.theme = activeTheme;
+    const isDark = activeTheme === 'dark';
+    modeLabel.textContent = isDark ? 'Gangster Mode' : 'Light Mode';
+    themeBtn.setAttribute('aria-label', isDark ? 'Switch to Light Mode' : 'Switch to Gangster Mode');
+    if(metaTheme) metaTheme.setAttribute('content', isDark ? '#080706' : '#f4efe5');
+    try{ localStorage.setItem('portfolio-theme', activeTheme); }catch(e){}
+  }
+
+  try{
+    const saved = localStorage.getItem('portfolio-theme');
+    if(saved === 'light' || saved === 'dark') applyTheme(saved);
+  }catch(e){}
+
+  themeBtn.addEventListener('click',()=>{
+    applyTheme(activeTheme === 'dark' ? 'light' : 'dark');
+  });
+
+  /* -----------------------------------------------------------------------
+     5. SPLIT SECTION HEADINGS & PARAGRAPHS (letter / word staggered reveal)
+     ----------------------------------------------------------------------- */
+  $$('[data-split]').forEach(el=>{
+    const mode = el.dataset.split;
+    const text = el.textContent.trim();
+    el.setAttribute('aria-label', text);
+    el.textContent = '';
+    const words = text.split(/\s+/).filter(Boolean);
+    const totalUnits = mode === 'chars' ? text.replace(/\s+/g,'').length : words.length;
+    const stepMs = mode === 'chars'
+      ? Math.max(14, Math.min(24, Math.floor(520 / Math.max(totalUnits, 1))))
+      : Math.max(12, Math.min(26, Math.floor(620 / Math.max(totalUnits, 1))));
+    el.style.setProperty('--split-step', stepMs + 'ms');
+
+    let idx = 0;
+    words.forEach((word, wIndex)=>{
+      if(mode === 'chars'){
+        const wordWrap = document.createElement('span');
+        wordWrap.className = 'split-word';
+        wordWrap.setAttribute('aria-hidden','true');
+        [...word].forEach(ch=>{
+          const unit = document.createElement('span');
+          unit.className = 'split-unit';
+          const inner = document.createElement('span');
+          inner.className = 'split-inner';
+          inner.style.setProperty('--i', idx++);
+          inner.textContent = ch;
+          unit.appendChild(inner);
+          wordWrap.appendChild(unit);
+        });
+        el.appendChild(wordWrap);
+      }else{
+        const unit = document.createElement('span');
+        unit.className = 'split-unit';
+        unit.setAttribute('aria-hidden','true');
+        const inner = document.createElement('span');
+        inner.className = 'split-inner';
+        inner.style.setProperty('--i', idx++);
+        inner.textContent = word;
+        unit.appendChild(inner);
+        el.appendChild(unit);
+      }
+      if(wIndex < words.length - 1) el.appendChild(document.createTextNode(' '));
+    });
+  });
+
+  /* -----------------------------------------------------------------------
+     6. SCROLL REVEALS + SMOOTH NAVBAR ACTIVE UNDERLINE
+     ----------------------------------------------------------------------- */
+  const revealObserver = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in-view');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  },{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+  $$('.reveal').forEach(el=>revealObserver.observe(el));
+
+  const sections = $$('main section[id]');
+  const navLinks = $$('.nav-link');
+  function updateActiveNav(){
+    const scrollPos = window.scrollY + window.innerHeight * 0.35;
+    let current = sections[0] ? sections[0].id : 'home';
+    if((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 20){
+      current = sections[sections.length - 1].id;
+    }else{
+      for(const sec of sections){
+        if(sec.offsetTop <= scrollPos) current = sec.id;
+      }
+    }
+    navLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+  }
+
+  const header = $('#header');
+  function onScroll(){
+    header.classList.toggle('stuck', window.scrollY > 24);
+    updateActiveNav();
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+    const target = document.querySelector(a.getAttribute('href'));
+    if(!target) return;
+    e.preventDefault();
+    $('#navMenu').classList.remove('open');
+    $('#menuBtn').classList.remove('open');
+    $('#menuBtn').setAttribute('aria-expanded','false');
+    target.scrollIntoView({behavior: reduced ? 'auto' : 'smooth'});
+  }));
+
+  const menuBtn = $('#menuBtn'), navMenu = $('#navMenu');
+  menuBtn.addEventListener('click',()=>{
+    const open = navMenu.classList.toggle('open');
+    menuBtn.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+
+  /* -----------------------------------------------------------------------
+     7. 3D TILT (Vanilla-Tilt style) + HERO DEPTH PARALLAX + 3D CUBE
+     ----------------------------------------------------------------------- */
+  if(finePointer && !reduced){
+    $$('[data-tilt]').forEach(card=>{
+      card.addEventListener('pointermove',e=>{
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.setProperty('--ry', (x * 11).toFixed(2) + 'deg');
+        card.style.setProperty('--rx', (-y * 11).toFixed(2) + 'deg');
+      });
+      card.addEventListener('pointerleave',()=>{
+        card.style.setProperty('--ry', '0deg');
+        card.style.setProperty('--rx', '0deg');
+      });
+    });
+
+    window.addEventListener('pointermove',e=>{
+      const nx = (e.clientX / window.innerWidth) * 2 - 1;
+      const ny = (e.clientY / window.innerHeight) * 2 - 1;
+      root.style.setProperty('--px', nx.toFixed(3));
+      root.style.setProperty('--py', ny.toFixed(3));
+    },{passive:true});
+  }
+
+  const cube = $('#cube');
+  if(!reduced){
+    let last = 0;
+    (function spin(t){
+      if(!document.hidden && t - last > 24){
+        const s = t / 1000;
+        cube.style.transform = `rotateX(${Math.sin(s*.28)*22 - 14}deg) rotateY(${s*14}deg) rotateZ(${Math.sin(s*.18)*10}deg)`;
+        last = t;
+      }
+      requestAnimationFrame(spin);
+    })(0);
+  }
+
+  /* -----------------------------------------------------------------------
+     8. CUSTOM CURSOR WITH SMOOTH TRAILING EFFECT
+     ----------------------------------------------------------------------- */
+  if(finePointer && !reduced){
+    document.body.classList.add('custom-cursor');
+    const dot = $('#cursorDot'), ring = $('#cursorRing'), trails = $$('[data-trail]');
+    let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my, started = false;
+    const tx = trails.map(()=>({x:mx, y:my}));
+
+    window.addEventListener('pointermove',e=>{
+      mx = e.clientX; my = e.clientY;
+      if(!started){
+        started = true;
+        rx = mx; ry = my;
+        tx.forEach(p=>{ p.x = mx; p.y = my; });
+        document.body.classList.add('cursor-ready');
+      }
+    },{passive:true});
+
+    document.addEventListener('pointerleave',()=>document.body.classList.remove('cursor-ready'));
+    document.addEventListener('pointerover',e=>{
+      if(e.target.closest('a,button,input,textarea,.tilt,.skill')) ring.classList.add('hot');
+    });
+    document.addEventListener('pointerout',e=>{
+      if(e.target.closest('a,button,input,textarea,.tilt,.skill')) ring.classList.remove('hot');
+    });
+
+    (function follow(){
+      dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
+      rx += (mx - rx) * 0.17;
+      ry += (my - ry) * 0.17;
+      ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+      let px = rx, py = ry;
+      tx.forEach((p,i)=>{
+        p.x += (px - p.x) * (0.24 - i * 0.03);
+        p.y += (py - p.y) * (0.24 - i * 0.03);
+        trails[i].style.transform = `translate(${p.x}px,${p.y}px) translate(-50%,-50%)`;
+        px = p.x; py = p.y;
+      });
+      requestAnimationFrame(follow);
+    })();
+  }
+
+  /* -----------------------------------------------------------------------
+     9. CONTACT FORM (opens default mail client with pre-filled body)
+     ----------------------------------------------------------------------- */
+  $('#contactForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    const f = e.currentTarget;
+    const name = f.name.value.trim();
+    const mail = f.email.value.trim();
+    const subject = f.subject.value.trim() || 'Portfolio Enquiry';
+    const message = f.message.value.trim();
+    const body = `${message}\n\n— ${name}\n${mail}`;
+    window.location.href = `mailto:f23ari02@aror.edu.pk?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+
+  $('#year').textContent = new Date().getFullYear();
+})();
+</script>
+<noscript><style>#loader,#entry{display:none!important}body.locked{overflow:auto}</style></noscript>
+</body>
 </html>
