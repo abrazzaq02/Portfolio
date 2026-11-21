@@ -5,16 +5,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#07111f" id="metaThemeColor">
 <meta name="description" content="Abdul Razaque — Artificial Intelligence student at Aror University, building machine-learning, computer-vision, and generative-AI applications. Explore projects, experience, and certificates.">
-<title>Abdul Razaque — AI Engineering Portfolio</title>
+<title>Abdul Razaque — AI Engineering Student &amp; Developer Portfolio</title>
+<link rel="canonical" href="https://abrazzaq02.github.io/Portfolio/">
+<meta name="author" content="Abdul Razaque">
+<meta name="color-scheme" content="dark light">
 
-<!-- Portfolio structure: content in this file, presentation in portfolio.css, interactions in main.js. -->
+<!-- Open Graph / social previews (LinkedIn, WhatsApp, X, Slack…) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Abdul Razaque — Portfolio">
+<meta property="og:title" content="Abdul Razaque — AI Engineering Student, open to internships">
+<meta property="og:description" content="Machine learning, computer vision and generative-AI projects, hackathons and certificates from a BS Artificial Intelligence student in Sukkur, Pakistan.">
+<meta property="og:url" content="https://abrazzaq02.github.io/Portfolio/">
+<meta property="og:image" content="https://abrazzaq02.github.io/Portfolio/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Abdul Razaque — AI Engineering portfolio preview">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@razaq303">
+<meta name="twitter:image" content="https://abrazzaq02.github.io/Portfolio/assets/og-image.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23a78bfa'/%3E%3Cstop offset='1' stop-color='%2351e3ef'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='%2307111f'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-weight='700' font-size='28' fill='url(%23g)'%3EAR%3C/text%3E%3C/svg%3E">
+
+<!-- Structured data helps Google show a rich result for your name -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Abdul Razaque","jobTitle":"AI Engineering Student","url":"https://abrazzaq02.github.io/Portfolio/","alumniOf":{"@type":"CollegeOrUniversity","name":"Aror University of Art, Architecture, Design and Heritage"},"address":{"@type":"PostalAddress","addressLocality":"Sukkur","addressCountry":"PK"},"sameAs":["https://github.com/abrazzaq02","https://www.linkedin.com/in/abdul-razaque-744a782a1/","https://x.com/razaq303"]}
+</script>
+
+<!-- Portfolio structure: content in this file, base styles in portfolio.css, 2026 upgrade layer in upgrade.css,
+     interactions in main.js + js/*.js (ES modules). -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preload" href="images/About.webp" as="image" type="image/webp" fetchpriority="high">
 
 <link rel="stylesheet" href="portfolio.css">
+<link rel="stylesheet" href="upgrade.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -54,7 +80,7 @@
      ========================================================================= -->
 <header class="site-header" id="header">
   <div class="nav-inner">
-    <a class="logo" href="#home" aria-label="Abdul Razaque, home"><b>AR</b><small>Abdul Razaque</small></a>
+    <a class="logo" href="#home" aria-label="AR Abdul Razaque — home"><b>AR</b><small>Abdul Razaque</small></a>
     <nav class="nav-menu" id="navMenu" aria-label="Main navigation">
       <a class="nav-link active" href="#home">Home</a>
       <a class="nav-link" href="#about">About</a>
@@ -66,6 +92,10 @@
       <a class="nav-link" href="#contact">Contact</a>
     </nav>
     <div class="nav-actions">
+      <button class="cmdk-btn" id="cmdkBtn" type="button" aria-label="Open command palette (Ctrl+K)" title="Command palette">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+        <kbd><span class="cmdk-mod">Ctrl</span> K</kbd>
+      </button>
       <button class="mode-btn" id="themeBtn" type="button" aria-label="Switch to daylight theme" title="Toggle Midnight / Daylight theme">
         <svg class="theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
         <svg class="theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 15.2A8.6 8.6 0 0 1 8.8 3.6a8.6 8.6 0 1 0 11.6 11.6Z"/></svg>
@@ -82,21 +112,25 @@
      ========================================================================= -->
 <section class="hero wrap" id="home">
   <div class="hero-copy">
-    <span class="eyebrow">Artificial Intelligence · Sukkur, Pakistan</span>
+    <div class="hero-badges">
+      <a class="open-badge" href="#contact"><span class="pulse-dot" aria-hidden="true"></span>Open to Internships · 2026–27</a>
+      <span class="eyebrow">Artificial Intelligence · Sukkur, Pakistan</span>
+    </div>
 
-    <h1 id="heroName" aria-label="Abdul Razaque"><span>Abdul</span> <span class="gradient-text">Razaque</span></h1>
+    <h1 id="heroName" class="split-3d" aria-label="Abdul Razaque"><span>Abdul</span> <span class="gradient-text">Razaque</span></h1>
 
     <div class="hero-meta">
-      <span class="role-tag">AI Engineering</span>
+      <!-- The visible text is scrambled by js/text-motion.js; screen readers get the static label. -->
+      <span class="role-tag"><span class="sr-only">AI Engineering Student, Student Developer, AI Enthusiast, Problem Solver</span><span id="roleScramble" aria-hidden="true">AI Engineering Student</span></span>
       <span class="hero-specialty">Machine Learning · Computer Vision · Generative AI</span>
     </div>
 
     <p class="hero-desc">BS Artificial Intelligence student at Aror University, building practical machine-learning, computer-vision, and generative-AI applications — from real-world data to working software.</p>
 
     <div class="hero-actions">
-      <a class="btn btn-primary" href="#contact"><span>Get in touch ↗</span></a>
-      <a class="btn btn-outline" href="#projects"><span>View selected work</span></a>
-      <a class="btn btn-quiet" href="Abdul_Razaque.pdf" download><span>Download CV ↓</span></a>
+      <a class="btn btn-primary magnetic" href="#contact"><span>Get in touch ↗</span></a>
+      <a class="btn btn-cv magnetic" href="Abdul_Razaque.pdf" download="Abdul_Razaque_CV.pdf"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5M4.5 19.5h15"/></svg>Download Resume</span></a>
+      <a class="btn btn-outline magnetic" href="#projects"><span>View selected work</span></a>
     </div>
 
     <!-- SOCIAL LINKS WITH OFFICIAL BRAND COLORS -->
@@ -111,13 +145,15 @@
   </div>
 
   <div class="hero-visual">
+    <!-- Interactive WebGL particle sphere (js/hero3d.js). The CSS blob is the fallback on mobile / low-end / reduced motion. -->
+    <div class="hero-3d" id="hero3d" aria-hidden="true"><div class="blob-fallback"></div></div>
     <div class="hero-orbit hero-orbit--one" aria-hidden="true"></div>
     <div class="hero-orbit hero-orbit--two" aria-hidden="true"></div>
     <div class="hero-orbit hero-orbit--three" aria-hidden="true"></div>
     <div class="portrait-wrap" data-tilt>
       <div class="portrait-halo" aria-hidden="true"></div>
       <div class="portrait-backframe" aria-hidden="true"></div>
-      <div class="portrait"><img src="images/About.png" alt="Abdul Razaque" fetchpriority="high" width="275" height="227"></div>
+      <div class="portrait"><picture><source srcset="images/About.webp" type="image/webp"><img src="images/About.png" alt="Abdul Razaque" fetchpriority="high" width="275" height="227"></picture></div>
     </div>
     <span class="chip one">MACHINE LEARNING <b>/ 01</b></span>
     <span class="chip two">COMPUTER VISION <b>/ 02</b></span>
@@ -136,8 +172,8 @@
     <h2>About Me</h2>
     <div class="rule"></div>
   </div>
-  <div class="about-grid">
-    <div class="about-text">
+  <div class="bento">
+    <div class="bento-card card about-text bento-intro">
       <p>I'm <strong>Abdul Razaque</strong>, a seventh-semester BS Artificial Intelligence student at Aror University of Art, Architecture, Design and Heritage in Sukkur, Pakistan. I expect to graduate in May 2027 and enjoy turning real-world problems into practical, measurable AI applications.</p>
       <p>My work spans <strong>machine learning, deep learning, computer vision and generative AI</strong>. I build with Python, Scikit-Learn, OpenCV, PyTorch and FastAPI, moving ideas from data preparation and experiments into usable applications.</p>
       <p>I've completed machine-learning, blockchain and business-technology internships; built practical projects; and joined AI hackathons, student events and community initiatives. My CV and original certificate scans are available below.</p>
@@ -147,9 +183,45 @@
         <div class="stat tilt" data-tilt><b>2027</b><span>Graduation</span></div>
       </div>
     </div>
-    <div class="about-card card tilt" data-tilt>
+
+    <!-- Status card -->
+    <div class="bento-card card bento-status">
+      <span class="bento-label"><span class="pulse-dot" aria-hidden="true"></span>Status</span>
+      <h3>Open to internships</h3>
+      <p>AI / ML, computer vision &amp; full-stack AI roles — remote or on-site. Available from 2026.</p>
+      <a class="bento-link" href="#contact">Let's talk →</a>
+    </div>
+
+    <!-- Live local time (js/widgets.js) -->
+    <div class="bento-card card bento-clock">
+      <span class="bento-label">Local time · Sukkur</span>
+      <time class="clock" id="localClock" datetime="">--:--</time>
+      <p><span id="clockZone">PKT · UTC+5</span> · <span id="clockStatus">—</span></p>
+    </div>
+
+    <!-- EDIT: keep this list updated with what you are studying right now -->
+    <div class="bento-card card bento-learning">
+      <span class="bento-label">Currently learning</span>
+      <ul class="learning-list">
+        <li><span>Agentic AI &amp; RAG with LangChain</span><small>70%</small><i style="--p:70%" aria-hidden="true"></i></li>
+        <li><span>MLOps — Docker, FastAPI &amp; CI/CD</span><small>55%</small><i style="--p:55%" aria-hidden="true"></i></li>
+        <li><span>Transformers &amp; fine-tuning LLMs</span><small>40%</small><i style="--p:40%" aria-hidden="true"></i></li>
+      </ul>
+    </div>
+
+    <!-- EDIT: change to the book / course you are reading -->
+    <div class="bento-card card bento-reading">
+      <span class="bento-label">Currently reading</span>
+      <div class="book">
+        <span class="book-cover" aria-hidden="true">ML</span>
+        <div><h4>Hands-On Machine Learning</h4><p>Aurélien Géron · 3rd ed.</p></div>
+      </div>
+    </div>
+
+    <div class="bento-card about-card card tilt bento-approach" data-tilt>
       <h3>How I approach engineering</h3>
       <p>I start with the real-world problem, then build a clear, useful solution with data and code.</p>
+      <div class="perks">
       <div class="perk">
         <span class="num">01</span>
         <div>
@@ -171,6 +243,7 @@
           <p>Fast APIs, sharp interfaces, and maintainable code.</p>
         </div>
       </div>
+      </div>
       <div class="tag-strip"><span>Python</span><span>OpenCV</span><span>PyTorch</span><span>FastAPI</span></div>
     </div>
   </div>
@@ -181,11 +254,36 @@
      ========================================================================= -->
 <section class="section wrap reveal" id="skills">
   <div class="section-head"><span class="kicker">02 / Technical toolkit</span><h2>Skills, languages &amp; tools</h2><div class="rule"></div><p class="lead">The languages, frameworks and platforms I use to build AI products — from data preparation through deployment.</p></div>
-  <div class="skills-grid">
+  <div class="skills-grid bento-skills">
     <article class="skill-card card tilt" data-tilt><span class="skill-index">01</span><h3>Programming languages</h3><div class="skill-tags"><span>Python</span><span>Java</span><span>C</span><span>C++</span><span>SQL</span><span>JavaScript</span><span>HTML5</span><span>CSS3</span></div></article>
     <article class="skill-card card tilt" data-tilt><span class="skill-index">02</span><h3>Machine learning &amp; data</h3><div class="skill-tags"><span>Scikit-Learn</span><span>PyTorch</span><span>TensorFlow</span><span>Keras</span><span>OpenCV</span><span>NLTK</span><span>Pandas</span><span>NumPy</span><span>Matplotlib</span><span>Seaborn</span></div></article>
     <article class="skill-card card tilt" data-tilt><span class="skill-index">03</span><h3>Generative AI</h3><div class="skill-tags"><span>LLMs</span><span>Transformers</span><span>RAG pipelines</span><span>Prompt engineering</span><span>Agentic AI</span><span>LangChain</span></div></article>
     <article class="skill-card card tilt" data-tilt><span class="skill-index">04</span><h3>Web, cloud &amp; developer tools</h3><div class="skill-tags"><span>React</span><span>Node.js</span><span>Flask</span><span>FastAPI</span><span>Streamlit</span><span>Docker</span><span>AWS EC2 / S3</span><span>CI/CD</span><span>Git / GitHub</span><span>Jupyter</span><span>Google Colab</span><span>VS Code</span><span>Linux</span><span>MySQL</span><span>PostgreSQL</span></div></article>
+  </div>
+
+  <!-- Infinite tech marquee: the list is duplicated by js/widgets.js for a seamless loop; pauses on hover -->
+  <div class="marquee" aria-label="Technologies I use">
+    <ul class="marquee-track">
+      <li><img src="https://cdn.simpleicons.org/python" alt="" width="28" height="28" loading="lazy" decoding="async"><span>Python</span></li>
+      <li><img src="https://cdn.simpleicons.org/pytorch" alt="" width="28" height="28" loading="lazy" decoding="async"><span>PyTorch</span></li>
+      <li><img src="https://cdn.simpleicons.org/tensorflow" alt="" width="28" height="28" loading="lazy" decoding="async"><span>TensorFlow</span></li>
+      <li><img src="https://cdn.simpleicons.org/scikitlearn" alt="" width="28" height="28" loading="lazy" decoding="async"><span>Scikit-Learn</span></li>
+      <li><img src="https://cdn.simpleicons.org/opencv" alt="" width="28" height="28" loading="lazy" decoding="async"><span>OpenCV</span></li>
+      <li><img src="https://cdn.simpleicons.org/pandas" alt="" width="28" height="28" loading="lazy" decoding="async"><span>Pandas</span></li>
+      <li><img src="https://cdn.simpleicons.org/numpy" alt="" width="28" height="28" loading="lazy" decoding="async"><span>NumPy</span></li>
+      <li><img src="https://cdn.simpleicons.org/huggingface" alt="" width="28" height="28" loading="lazy" decoding="async"><span>Hugging Face</span></li>
+      <li><img src="https://cdn.simpleicons.org/langchain" alt="" width="28" height="28" loading="lazy" decoding="async"><span>LangChain</span></li>
+      <li><img src="https://cdn.simpleicons.org/fastapi" alt="" width="28" height="28" loading="lazy" decoding="async"><span>FastAPI</span></li>
+      <li><img src="https://cdn.simpleicons.org/flask" alt="" width="28" height="28" loading="lazy" decoding="async"><span>Flask</span></li>
+      <li><img src="https://cdn.simpleicons.org/streamlit" alt="" width="28" height="28" loading="lazy" decoding="async"><span>Streamlit</span></li>
+      <li><img src="https://cdn.simpleicons.org/react" alt="" width="28" height="28" loading="lazy" decoding="async"><span>React</span></li>
+      <li><img src="https://cdn.simpleicons.org/nodedotjs" alt="" width="28" height="28" loading="lazy" decoding="async"><span>Node.js</span></li>
+      <li><img src="https://cdn.simpleicons.org/docker" alt="" width="28" height="28" loading="lazy" decoding="async"><span>Docker</span></li>
+      <li><img src="https://cdn.simpleicons.org/postgresql" alt="" width="28" height="28" loading="lazy" decoding="async"><span>PostgreSQL</span></li>
+      <li><img src="https://cdn.simpleicons.org/git" alt="" width="28" height="28" loading="lazy" decoding="async"><span>Git</span></li>
+      <li><img src="https://cdn.simpleicons.org/jupyter" alt="" width="28" height="28" loading="lazy" decoding="async"><span>Jupyter</span></li>
+      <li><img src="https://cdn.simpleicons.org/linux" alt="" width="28" height="28" loading="lazy" decoding="async"><span>Linux</span></li>
+    </ul>
   </div>
 </section>
 
@@ -199,37 +297,51 @@
     <div class="rule"></div>
     <p class="lead">A few builds where data, design, and code come together.</p>
   </div>
+  <!-- EDIT: the "What I learned" lines are drafts — rewrite them in your own words. -->
   <div class="projects-grid">
+    <article class="project card tilt project-featured" data-tilt data-no="04">
+      <span class="meta">Space Health · Hackathon</span>
+      <h3>ASTROCARE AI</h3>
+      <dl class="project-story">
+        <div><dt>Problem</dt><dd>Astronaut crews need early, explainable warnings about health trends during long missions.</dd></div>
+        <div><dt>What I built</dt><dd>A crew-health research prototype with simulated telemetry, explainable trends, space-weather context and a mission simulator. A hackathon demonstration — not a medical tool.</dd></div>
+        <div><dt>What I learned</dt><dd>Shipping a full-stack AI demo under hackathon time pressure, and presenting explainability clearly to judges.</dd></div>
+      </dl>
+      <div class="tags" aria-label="Tech used"><span>React</span><span>FastAPI</span><span>Python</span><span>AI</span></div>
+      <div class="project-links"><a class="project-link magnetic" href="https://astrocare-ai.pages.dev/" target="_blank" rel="noopener noreferrer">Live demo ↗</a><a class="project-link magnetic" href="https://github.com/abrazzaq02/ASTROCARE-AI" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+    </article>
     <article class="project card tilt" data-tilt data-no="01">
       <span class="meta">Expert System</span>
       <h3>AI-Based Smart Career Counseling</h3>
-      <p>A rule-based expert system with a knowledge base, inference engine and forward chaining. It provides explainable recommendations, skill-gap analysis and personalized roadmaps across 10 career domains.</p>
-      <div class="tags"><span>Python</span><span>Streamlit</span><span>Expert Systems</span></div>
-      <a class="project-link" href="https://github.com/abrazzaq02/AI-Based-Smart-Career-Counseling-" target="_blank" rel="noopener noreferrer">Explore repository ↗</a>
+      <dl class="project-story">
+        <div><dt>Problem</dt><dd>Students pick careers without personalised, explainable guidance on the skills they are missing.</dd></div>
+        <div><dt>What I built</dt><dd>A rule-based expert system with a knowledge base, inference engine and forward chaining. It gives explainable recommendations, skill-gap analysis and personalised roadmaps across 10 career domains.</dd></div>
+        <div><dt>What I learned</dt><dd>Designing a knowledge base and inference rules so every recommendation can be explained.</dd></div>
+      </dl>
+      <div class="tags" aria-label="Tech used"><span>Python</span><span>Streamlit</span><span>Expert Systems</span></div>
+      <div class="project-links"><a class="project-link magnetic" href="https://github.com/abrazzaq02/AI-Based-Smart-Career-Counseling-" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
     </article>
-
     <article class="project card tilt" data-tilt data-no="02">
       <span class="meta">AutoML</span>
       <h3>AutoML for Small Businesses</h3>
-      <p>Automates missing-value imputation, encoding and feature scaling, then compares five-plus classifiers with clear metrics and visualizations — cutting experimentation time by about 60%.</p>
-      <div class="tags"><span>Python</span><span>Scikit-Learn</span><span>Pandas</span></div>
-      <a class="project-link" href="https://github.com/abrazzaq02/AutoMl-For-Small-Bussiness" target="_blank" rel="noopener noreferrer">Explore repository ↗</a>
+      <dl class="project-story">
+        <div><dt>Problem</dt><dd>Small businesses can't afford a data scientist to clean data and compare models.</dd></div>
+        <div><dt>What I built</dt><dd>A pipeline that automates missing-value imputation, encoding and feature scaling, then compares five-plus classifiers with clear metrics and visualisations — cutting experimentation time by about 60%.</dd></div>
+        <div><dt>What I learned</dt><dd>Building reusable preprocessing pipelines and choosing fair metrics to compare models.</dd></div>
+      </dl>
+      <div class="tags" aria-label="Tech used"><span>Python</span><span>Scikit-Learn</span><span>Pandas</span></div>
+      <div class="project-links"><a class="project-link magnetic" href="https://github.com/abrazzaq02/AutoMl-For-Small-Bussiness" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
     </article>
-
     <article class="project card tilt" data-tilt data-no="03">
       <span class="meta">Computer Vision</span>
       <h3>Face Detection Attendance System</h3>
-      <p>Real-time OpenCV attendance at 30+ FPS, with lighting normalization and timestamped SQL records. The system reduces attendance-logging time by about 80%.</p>
-      <div class="tags"><span>Python</span><span>OpenCV</span><span>SQL</span></div>
-      <a class="project-link" href="https://github.com/abrazzaq02/Face-Detection-Attendence-System" target="_blank" rel="noopener noreferrer">Explore repository ↗</a>
-    </article>
-
-    <article class="project card tilt" data-tilt data-no="04">
-      <span class="meta">Space Health</span>
-      <h3>ASTROCARE AI</h3>
-      <p>A crew-health research prototype with simulated telemetry, explainable trends, space-weather context and a mission simulator. A hackathon demonstration — not a medical tool.</p>
-      <div class="tags"><span>React</span><span>FastAPI</span><span>AI</span></div>
-      <div class="project-links"><a class="project-link" href="https://astrocare-ai.pages.dev/" target="_blank" rel="noopener noreferrer">View live demo ↗</a><a class="project-link" href="https://github.com/abrazzaq02/ASTROCARE-AI" target="_blank" rel="noopener noreferrer">Explore repository ↗</a></div>
+      <dl class="project-story">
+        <div><dt>Problem</dt><dd>Manual attendance is slow and easy to fake in classrooms.</dd></div>
+        <div><dt>What I built</dt><dd>Real-time OpenCV attendance at 30+ FPS, with lighting normalisation and timestamped SQL records — reducing attendance-logging time by about 80%.</dd></div>
+        <div><dt>What I learned</dt><dd>Optimising a real-time vision loop and handling poor lighting in real rooms.</dd></div>
+      </dl>
+      <div class="tags" aria-label="Tech used"><span>Python</span><span>OpenCV</span><span>SQL</span></div>
+      <div class="project-links"><a class="project-link magnetic" href="https://github.com/abrazzaq02/Face-Detection-Attendence-System" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
     </article>
   </div>
   <div class="more-projects">
@@ -239,27 +351,62 @@
 </section>
 
 <!-- =========================================================================
+     GITHUB — live stats + contribution graph (js/widgets.js)
+     ========================================================================= -->
+<section class="section wrap reveal" id="github">
+  <div class="section-head"><span class="kicker">04 / Open source</span><h2>GitHub activity</h2><div class="rule"></div><p class="lead">Live numbers pulled from the GitHub API every time the page loads.</p></div>
+  <div class="gh-grid">
+    <div class="bento-card card gh-stat"><span class="bento-label">Public repos</span><b id="ghRepos">—</b></div>
+    <div class="bento-card card gh-stat"><span class="bento-label">Followers</span><b id="ghFollowers">—</b></div>
+    <div class="bento-card card gh-stat"><span class="bento-label">Contributions · last year</span><b id="ghTotal">—</b></div>
+    <div class="bento-card card gh-stat"><span class="bento-label">On GitHub since</span><b id="ghSince">—</b></div>
+    <div class="bento-card card gh-graph-card">
+      <div class="gh-graph-head"><span class="bento-label">Contribution graph</span><a class="bento-link" href="https://github.com/abrazzaq02" target="_blank" rel="noopener noreferrer">@abrazzaq02 ↗</a></div>
+      <div class="gh-graph" id="ghGraph" role="img" aria-label="GitHub contribution graph for the last year"><p class="gh-loading">Loading contributions…</p></div>
+      <div class="gh-legend" aria-hidden="true">Less <i data-l="0"></i><i data-l="1"></i><i data-l="2"></i><i data-l="3"></i><i data-l="4"></i> More</div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================================
      EXPERIENCE
      ========================================================================= -->
 <section class="section wrap reveal" id="experience">
   <div class="section-head">
-    <span class="kicker">04 / Experience &amp; education</span>
+    <span class="kicker">05 / Experience &amp; education</span>
     <h2>Experience &amp; education</h2>
     <div class="rule"></div>
     <p class="lead">Learning, building, and showing up — one milestone at a time.</p>
   </div>
-  <div class="timeline">
+  <div class="timeline" id="timeline">
+    <div class="timeline-progress" aria-hidden="true"></div>
     <article class="timeline-item"><time datetime="2026-11">Nov 2026</time><h3>NASA Space Apps Challenge</h3><span class="org">Galactic Problem Solver</span><p>Recognized for participation and efforts to address challenges on Earth and in space at the 2026 challenge.</p></article>
     <article class="timeline-item"><time datetime="2026-06">10 Jun – 22 Jul 2026</time><h3>Business Technology Intern</h3><span class="org">Alkaram Textile Mills (Pvt.) Ltd.</span><p>Completed an internship in the Business Technology department, applying software and analytics to enterprise workflows.</p></article>
     <article class="timeline-item"><time datetime="2025-07">Jul – Sep 2025</time><h3>Machine Learning Intern</h3><span class="org">Elevvo Pathways</span><p>Trained a CNN + MFCC music-genre classifier on 1,000+ tracks, reaching 87% accuracy across 10 genres. Delivered 3+ end-to-end ML pipelines and documented results for technical and non-technical teams.</p></article>
     <article class="timeline-item"><time datetime="2025-08">2025 · Certificate issued 26 Aug</time><h3>Blockchain Development Intern</h3><span class="org">Micro IT Industry</span><p>Completed a practical blockchain development internship focused on decentralized applications and smart-contract fundamentals.</p></article>
-    <article class="timeline-item"><time datetime="2023-06">Jun 2023 – May 2027 (expected)</time><h3>Bachelor of Science in Artificial Intelligence</h3><span class="org">Aror University of Art, Architecture, Design and Heritage · Sukkur</span><p>Coursework includes machine learning, deep learning and neural networks, computer vision, generative AI and digital image processing.</p></article>
+    <article class="timeline-item timeline-edu"><time datetime="2023-06">Jun 2023 – May 2027 (expected)</time><h3>Bachelor of Science in Artificial Intelligence</h3><span class="org">Aror University of Art, Architecture, Design and Heritage · Sukkur</span><p>Coursework includes machine learning, deep learning and neural networks, computer vision, generative AI and digital image processing.</p></article>
+  </div>
+</section>
+
+
+<!-- =========================================================================
+     HACKATHONS & ACHIEVEMENTS — badges
+     ========================================================================= -->
+<section class="section wrap reveal" id="achievements">
+  <div class="section-head"><span class="kicker">06 / Wins &amp; hackathons</span><h2>Hackathons &amp; achievements</h2><div class="rule"></div><p class="lead">Where I've built under pressure, led teams and represented my university.</p></div>
+  <div class="badge-grid">
+    <article class="achv card" style="--hue:#51e3ef"><span class="achv-badge" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 4 40 12v12c0 10-7 17-16 20C15 41 8 34 8 24V12Z"/><path d="m17 24 5 5 9-10"/></svg></span><div><span class="achv-tag">NASA · 2026</span><h3>Galactic Problem Solver</h3><p>NASA Space Apps Challenge — built ASTROCARE AI for crew-health monitoring.</p></div></article>
+    <article class="achv card" style="--hue:#a78bfa"><span class="achv-badge" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M14 6h20v10a10 10 0 0 1-20 0Z"/><path d="M14 10H7a7 7 0 0 0 7 9M34 10h7a7 7 0 0 1-7 9M24 26v8M16 42h16l-2-8H18Z"/></svg></span><div><span class="achv-tag">24-hour · Oct 2026</span><h3>Open Hack ’26</h3><p>MUET SZAB hybrid hackathon with Team Bug Hunters.</p></div></article>
+    <article class="achv card" style="--hue:#fb76b7"><span class="achv-badge" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="10" y="10" width="28" height="28" rx="6"/><path d="M18 4v6M30 4v6M18 38v6M30 38v6M4 18h6M4 30h6M38 18h6M38 30h6M18 18h12v12H18Z"/></svg></span><div><span class="achv-tag">AI products · Oct 2026</span><h3>NYLP × AI Hackathon</h3><p>Building AI products — National Youth Leadership Programme.</p></div></article>
+    <article class="achv card" style="--hue:#c3f477"><span class="achv-badge" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18"/><path d="M6 24h36M24 6c6 6 6 30 0 36M24 6c-6 6-6 30 0 36"/></svg></span><div><span class="achv-tag">Leadership · 2026</span><h3>IMUN Ambassador</h3><p>Recognised for ambassador contribution to IMUN 2026.</p></div></article>
+    <article class="achv card" style="--hue:#ffb86b"><span class="achv-badge" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 6 29 18l13 1-10 8 3 13-11-7-11 7 3-13-10-8 13-1Z"/></svg></span><div><span class="achv-tag">Community · 2026</span><h3>Lead Forward Sindh</h3><p>Youth Volunteerism Camp — appreciation for community impact.</p></div></article>
+    <article class="achv card" style="--hue:#7dd3fc"><span class="achv-badge" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 40V18l16-10 16 10v22Z"/><path d="M18 40V28h12v12"/></svg></span><div><span class="achv-tag">University · 2026</span><h3>AUMUN ’26</h3><p>Appreciation for contribution to Aror University Model UN.</p></div></article>
   </div>
 </section>
 
 <!-- CERTIFICATIONS & RECOGNITION -->
 <section class="section wrap reveal" id="certifications">
-  <div class="section-head"><span class="kicker">05 / Recognition</span><h2>Certificates &amp; recognition</h2><div class="rule"></div><p class="lead">Original scans and training credentials from AI, software, leadership and community work.</p></div>
+  <div class="section-head"><span class="kicker">07 / Certificates</span><h2>Certificates &amp; recognition</h2><div class="rule"></div><p class="lead">Original scans and training credentials from AI, software, leadership and community work.</p></div>
   <div class="cert-filter" role="group" aria-label="Filter certificates">
     <button class="filter-chip active" type="button" data-filter="All" aria-pressed="true">All</button><button class="filter-chip" type="button" data-filter="Professional" aria-pressed="false">Professional</button><button class="filter-chip" type="button" data-filter="Hackathons" aria-pressed="false">Hackathons</button><button class="filter-chip" type="button" data-filter="Internships" aria-pressed="false">Internships</button><button class="filter-chip" type="button" data-filter="Leadership" aria-pressed="false">Leadership</button><button class="filter-chip" type="button" data-filter="Events" aria-pressed="false">Events</button>
   </div>
@@ -268,8 +415,8 @@
     <article class="cert-card" data-category="Hackathons"><button class="certificate-preview" type="button" data-full="assets/certificates/open-hack.webp" data-title="Open Hack ’26 — 24-Hour Hybrid Hackathon" aria-label="View Open Hack 2026 certificate"><img src="assets/certificates/open-hack.webp" alt="Open Hack 2026 certificate of participation for Team Bug Hunters" loading="lazy" width="1000" height="620"><span class="preview-overlay" aria-hidden="true">View original ↗</span></button><div class="cert-card-content"><span class="cert-eyebrow">Hackathon · 13 Oct 2026</span><h3>Open Hack ’26 — 24-Hour Hybrid Hackathon</h3><p class="cert-issuer">MUET SZAB · Department of Software Engineering</p><p class="cert-description">Certificate of participation as part of Team Bug Hunters, Khairpur Mir’s.</p><button class="cert-link" type="button" data-full="assets/certificates/open-hack.webp" data-title="Open Hack ’26 — 24-Hour Hybrid Hackathon">View certificate ↗</button></div></article>
     <article class="cert-card" data-category="Hackathons"><button class="certificate-preview" type="button" data-full="assets/certificates/nylp-ai.webp" data-title="NYLP × AI Hackathon — Building AI Products" aria-label="View NYLP AI Hackathon certificate"><img src="assets/certificates/nylp-ai.webp" alt="NYLP x AI Hackathon 2026 certificate of participation" loading="lazy" width="1000" height="620"><span class="preview-overlay" aria-hidden="true">View original ↗</span></button><div class="cert-card-content"><span class="cert-eyebrow">Hackathon · 15–18 Oct 2026</span><h3>NYLP × AI Hackathon — Building AI Products</h3><p class="cert-issuer">National Youth Leadership Programme</p><p class="cert-description">Participation · issued 1 Nov 2026 · Certificate NYLP/Hackathon/B1/008.</p><button class="cert-link" type="button" data-full="assets/certificates/nylp-ai.webp" data-title="NYLP × AI Hackathon — Building AI Products">View certificate ↗</button></div></article>
     <article class="cert-card" data-category="Professional"><div class="cert-visual" aria-hidden="true"><strong>GenAI</strong><small>NCEAC–HEC · Cohort 3 · 2026</small></div><div class="cert-card-content"><span class="cert-eyebrow">Professional · 2026</span><h3>Generative AI Application Developer</h3><p class="cert-issuer">NCEAC–HEC Generative AI Training · Cohort 3</p><p class="cert-description">Cohort-based training in developing applications with generative AI.</p></div></article>
-    <article class="cert-card" data-category="Professional"><button class="certificate-preview" type="button" data-full="assets/certificates/data-analytics.webp" data-title="Google Data Analytics Professional Certificate" aria-label="View Google Data Analytics certificate"><img src="assets/certificates/data-analytics.webp" alt="Google Data Analytics Professional Certificate awarded to Abdul Razaque" loading="lazy" width="1000" height="620"><span class="preview-overlay" aria-hidden="true">View original ↗</span></button><div class="cert-card-content"><span class="cert-eyebrow">Professional · 12 Jul 2025</span><h3>Google Data Analytics</h3><p class="cert-issuer">Google · Coursera</p><p class="cert-description">Professional Certificate · nine courses covering data preparation, analysis and visualization.</p><button class="cert-link" type="button" data-full="assets/certificates/data-analytics.webp" data-title="Google Data Analytics Professional Certificate">View certificate ↗</button></div></article>
-    <article class="cert-card" data-category="Professional"><button class="certificate-preview" type="button" data-full="assets/certificates/cybersecurity.webp" data-title="Google Cybersecurity Professional Certificate" aria-label="View Google Cybersecurity certificate"><img src="assets/certificates/cybersecurity.webp" alt="Google Cybersecurity Professional Certificate awarded to Abdul Razaque" loading="lazy" width="1000" height="620"><span class="preview-overlay" aria-hidden="true">View original ↗</span></button><div class="cert-card-content"><span class="cert-eyebrow">Professional · 5 Nov 2024</span><h3>Google Cybersecurity</h3><p class="cert-issuer">Google · Coursera</p><p class="cert-description">Professional Certificate · eight courses in cybersecurity, Linux, SQL and Python.</p><button class="cert-link" type="button" data-full="assets/certificates/cybersecurity.webp" data-title="Google Cybersecurity Professional Certificate">View certificate ↗</button></div></article>
+    <article class="cert-card" data-category="Professional"><button class="certificate-preview" type="button" data-full="assets/certificates/data-analytics.webp" data-title="Google Data Analytics Professional Certificate" aria-label="View Google Data Analytics certificate"><img src="assets/certificates/data-analytics.webp" alt="Google Data Analytics Professional Certificate awarded to Abdul Razaque" loading="lazy" width="1000" height="620"><span class="preview-overlay" aria-hidden="true">View original ↗</span></button><div class="cert-card-content"><span class="cert-eyebrow">Professional · 12 Jul 2025</span><h3>Google Data Analytics</h3><p class="cert-issuer">Google · Coursera</p><p class="cert-description">Professional Certificate · nine courses covering data preparation, analysis and visualization.</p><button class="cert-link" type="button" data-full="assets/certificates/data-analytics.webp" data-title="Google Data Analytics Professional Certificate">View certificate ↗</button><a class="cert-verify" href="https://www.linkedin.com/in/abdul-razaque-744a782a1/details/certifications/" target="_blank" rel="noopener noreferrer">Verify ✓</a></div></article>
+    <article class="cert-card" data-category="Professional"><button class="certificate-preview" type="button" data-full="assets/certificates/cybersecurity.webp" data-title="Google Cybersecurity Professional Certificate" aria-label="View Google Cybersecurity certificate"><img src="assets/certificates/cybersecurity.webp" alt="Google Cybersecurity Professional Certificate awarded to Abdul Razaque" loading="lazy" width="1000" height="620"><span class="preview-overlay" aria-hidden="true">View original ↗</span></button><div class="cert-card-content"><span class="cert-eyebrow">Professional · 5 Nov 2024</span><h3>Google Cybersecurity</h3><p class="cert-issuer">Google · Coursera</p><p class="cert-description">Professional Certificate · eight courses in cybersecurity, Linux, SQL and Python.</p><button class="cert-link" type="button" data-full="assets/certificates/cybersecurity.webp" data-title="Google Cybersecurity Professional Certificate">View certificate ↗</button><a class="cert-verify" href="https://www.linkedin.com/in/abdul-razaque-744a782a1/details/certifications/" target="_blank" rel="noopener noreferrer">Verify ✓</a></div></article>
     <article class="cert-card" data-category="Internships"><button class="certificate-preview" type="button" data-full="assets/certificates/blockchain.webp" data-title="Blockchain Development Internship — Micro IT Industry" aria-label="View Blockchain Development Internship certificate"><img src="assets/certificates/blockchain.webp" alt="Blockchain Development Internship completion certificate from Micro IT Industry" loading="lazy" width="1000" height="620"><span class="preview-overlay" aria-hidden="true">View original ↗</span></button><div class="cert-card-content"><span class="cert-eyebrow">Internship · 26 Aug 2025</span><h3>Blockchain Development Internship</h3><p class="cert-issuer">Micro IT Industry</p><p class="cert-description">Internship completion certificate.</p><button class="cert-link" type="button" data-full="assets/certificates/blockchain.webp" data-title="Blockchain Development Internship — Micro IT Industry">View certificate ↗</button></div></article>
     <article class="cert-card" data-category="Internships"><div class="cert-visual" aria-hidden="true"><strong>ML</strong><small>Elevvo Pathways · 2025</small></div><div class="cert-card-content"><span class="cert-eyebrow">Internship · 2025</span><h3>Machine Learning Internship</h3><p class="cert-issuer">Elevvo Pathways</p><p class="cert-description">Internship experience building practical machine-learning models and pipelines.</p></div></article>
     <article class="cert-card" data-category="Professional"><div class="cert-visual" aria-hidden="true"><strong>UX</strong><small>Google · User Experience</small></div><div class="cert-card-content"><span class="cert-eyebrow">Professional training</span><h3>Google UX Design</h3><p class="cert-issuer">Foundations of User Experience Design</p><p class="cert-description">Training in human-centered thinking and foundational user-experience design.</p></div></article>
@@ -285,7 +432,7 @@
 
 <!-- SERVICES & EXPERTISE -->
 <section class="section wrap reveal" id="services">
-  <div class="section-head"><span class="kicker">06 / Areas of expertise</span><h2>What I can help build</h2><div class="rule"></div><p class="lead">A practical toolkit for taking ideas from early prototypes to clear, usable applications.</p></div>
+  <div class="section-head"><span class="kicker">08 / Areas of expertise</span><h2>What I can help build</h2><div class="rule"></div><p class="lead">A practical toolkit for taking ideas from early prototypes to clear, usable applications.</p></div>
   <div class="services-grid">
     <article class="service-card"><span class="service-icon" aria-hidden="true">AI</span><h3>AI &amp; GenAI prototypes</h3><p>Prototype AI-powered applications, recommendation systems and interactive demonstrations.</p></article>
     <article class="service-card"><span class="service-icon" aria-hidden="true">ML</span><h3>Machine-learning pipelines</h3><p>Prepare datasets, train and compare models, and evaluate results with clear metrics.</p></article>
@@ -301,7 +448,7 @@
      ========================================================================= -->
 <section class="section wrap reveal" id="contact">
   <div class="section-head">
-    <span class="kicker">07 / Get in touch</span>
+    <span class="kicker">09 / Get in touch</span>
     <h2>Let's Connect</h2>
     <div class="rule"></div>
     <p class="lead">Have a project, an AI idea, or an opportunity? My inbox is always open.</p>
@@ -345,9 +492,45 @@
 
 <footer class="site-footer wrap">
   <span>© <span id="year">2026</span> Abdul Razaque. All rights reserved.</span>
-  <span>Built with curiosity, code and AI.</span>
+  <span>Press <kbd>Ctrl</kbd> + <kbd>K</kbd> to explore · psst, try the Konami code.</span>
 </footer>
 
+<!-- =========================================================================
+     COMMAND PALETTE (Ctrl/Cmd + K) — js/palette.js
+     ========================================================================= -->
+<dialog class="cmdk" id="cmdk" aria-label="Command palette">
+  <div class="cmdk-box">
+    <label class="sr-only" for="cmdkInput">Search sections and actions</label>
+    <input id="cmdkInput" type="text" placeholder="Jump to a section or run a command…" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="cmdkList" aria-autocomplete="list">
+    <ul id="cmdkList" role="listbox" aria-label="Commands"></ul>
+    <p class="cmdk-foot"><kbd>↑</kbd><kbd>↓</kbd> navigate · <kbd>Enter</kbd> select · <kbd>Esc</kbd> close</p>
+  </div>
+</dialog>
+
+<!-- Hidden terminal mode (easter egg): open from the palette or press the ` key -->
+<dialog class="terminal" id="terminal" aria-label="Terminal mode">
+  <div class="term-bar"><i></i><i></i><i></i><span>abdul@portfolio: ~</span><button type="button" id="termClose" aria-label="Close terminal">×</button></div>
+  <div class="term-out" id="termOut" aria-live="polite" data-lenis-prevent></div>
+  <form class="term-in" id="termForm"><label for="termInput">$</label><input id="termInput" autocomplete="off" spellcheck="false" aria-label="Terminal command"></form>
+</dialog>
+
+<!-- AI chatbot about me — js/chatbot.js (runs fully in the browser, no API key) -->
+<div class="chat" id="chat">
+  <button class="chat-fab magnetic" id="chatFab" type="button" aria-expanded="false" aria-controls="chatPanel" aria-label="Ask my AI assistant">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4Z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></svg>
+  </button>
+  <section class="chat-panel card" id="chatPanel" hidden aria-label="Chat with Abdul's assistant">
+    <header><span class="pulse-dot" aria-hidden="true"></span><div><strong>Ask about Abdul</strong><small>Skills · projects · contact</small></div><button type="button" id="chatClose" aria-label="Close chat">×</button></header>
+    <div class="chat-log" id="chatLog" aria-live="polite" data-lenis-prevent></div>
+    <div class="chat-chips" id="chatChips"></div>
+    <form class="chat-form" id="chatForm"><label class="sr-only" for="chatInput">Your question</label><input id="chatInput" placeholder="e.g. What are his best projects?" autocomplete="off"><button type="submit" aria-label="Send">↑</button></form>
+  </section>
+</div>
+
+<canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
+
 <script src="main.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js" defer></script>
+<script type="module" src="js/app.js"></script>
 </body>
 </html>

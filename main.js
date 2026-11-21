@@ -32,8 +32,13 @@
     if (savedTheme === 'light' || savedTheme === 'dark') setTheme(savedTheme, false);
   } catch (_) { /* Keep the default theme when storage is unavailable. */ }
 
-  themeButton?.addEventListener('click', () => {
-    setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
+  // View Transitions API: the new theme grows as a circle from the button (see upgrade.css).
+  themeButton?.addEventListener('click', (event) => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    if (!document.startViewTransition || reducedMotion) { setTheme(next); return; }
+    root.style.setProperty('--vt-x', `${event.clientX || window.innerWidth - 60}px`);
+    root.style.setProperty('--vt-y', `${event.clientY || 36}px`);
+    document.startViewTransition(() => setTheme(next));
   });
 
   // Accessible mobile navigation.
