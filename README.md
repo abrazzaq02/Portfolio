@@ -4,6 +4,6 @@ A responsive, single-page portfolio for Abdul Razaque, an Artificial Intelligenc
 
 Live:https://abdulrazaqueportfolio.netlify.app/
 
-Then open <http://localhost:8000>.
+
 
 
