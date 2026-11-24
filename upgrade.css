@@ -624,3 +624,47 @@ main { overflow-x: clip; }
   .blob-fallback, .achv-badge::before, .pulse-dot::after { animation: none; }
   ::view-transition-new(root) { animation: none; }
 }
+
+/* 14. CHAT TEASER + CONTACT FORM STATUS ---------------------------------- */
+.chat-teaser {
+  position: absolute;
+  right: 72px;
+  bottom: 10px;
+  width: max-content;
+  max-width: min(260px, calc(100vw - 110px));
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 16px 16px 4px 16px;
+  background: color-mix(in srgb, var(--panel-solid) 96%, transparent);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: left;
+  box-shadow: 0 14px 34px -12px rgba(0, 0, 0, .55);
+  animation: pop .3s var(--spring);
+}
+.chat-teaser[hidden] { display: none; }
+.chat-teaser:hover { border-color: var(--accent-cyan); }
+.chat-fab.attention::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--accent-cyan);
+  animation: chat-ping 1.8s cubic-bezier(0, 0, .2, 1) infinite;
+  pointer-events: none;
+}
+.chat-fab { position: relative; }
+@keyframes chat-ping { 75%, 100% { transform: scale(1.6); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .chat-fab.attention::after, .chat-teaser { animation: none; }
+}
+
+.form-status { min-height: 1.4em; margin: 0; font-size: 13px; font-weight: 600; }
+.form-status:empty { display: none; }
+.form-status[data-state="pending"] { color: var(--muted); }
+.form-status[data-state="success"] { color: #22c55e; }
+.form-status[data-state="error"] { color: #f59e0b; }
+.contact-form[aria-busy="true"] button[type="submit"] { opacity: .6; cursor: progress; }
+.form-note a { color: inherit; text-decoration: underline; }
