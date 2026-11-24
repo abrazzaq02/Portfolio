@@ -1,4 +1,4 @@
-// "Ask about Abdul" assistant.
+// "Abdul Razaque Assistant" — on-page chatbot.
 // It runs entirely in the browser: a small knowledge base + keyword scoring, so it is free, instant,
 // private and works on GitHub Pages. (To upgrade to a real LLM later, send `question` to a serverless
 // function that holds your API key — never put an API key in front-end code.)
@@ -6,7 +6,7 @@ import { $ } from './env.js';
 import { confetti } from './confetti.js';
 
 const KB = [
-  { id: 'hi', keys: ['hi', 'hello', 'hey', 'salam', 'assalam', 'yo'], a: "Hi! 👋 I'm Abdul's portfolio assistant. Ask me about his skills, projects, experience, hackathons or how to contact him." },
+  { id: 'hi', keys: ['hi', 'hello', 'hey', 'salam', 'assalam', 'yo'], a: "Hi! 👋 I'm Abdul Razaque Assistant. Ask me about his skills, projects, experience, hackathons or how to contact him." },
   { id: 'who', keys: ['who', 'about', 'introduce', 'yourself', 'abdul', 'background', 'student', 'study', 'university', 'education', 'degree', 'graduate'], a: "Abdul Razaque is a 7th-semester BS Artificial Intelligence student at Aror University of Art, Architecture, Design and Heritage in Sukkur, Pakistan. He's graduating in May 2027 and builds practical ML, computer-vision and generative-AI applications." },
   { id: 'skills', keys: ['skill', 'skills', 'stack', 'tech', 'language', 'languages', 'framework', 'tools', 'know', 'python', 'pytorch', 'tensorflow', 'react'], a: 'Core stack:\n• Languages: Python, Java, C/C++, SQL, JavaScript\n• ML/Data: PyTorch, TensorFlow, Keras, Scikit-Learn, OpenCV, Pandas, NumPy\n• GenAI: LLMs, RAG, LangChain, prompt engineering, agentic AI\n• Web/Cloud: FastAPI, Flask, Streamlit, React, Node.js, Docker, AWS, Git', link: ['#skills', 'See the skills section'] },
   { id: 'projects', keys: ['project', 'projects', 'built', 'build', 'work', 'portfolio', 'best', 'github', 'repo'], a: 'Highlights:\n• ASTROCARE AI — crew-health prototype for NASA Space Apps (React + FastAPI)\n• Smart Career Counseling — explainable expert system across 10 career domains\n• AutoML for Small Businesses — automated preprocessing + model comparison (~60% faster experiments)\n• Face Detection Attendance — real-time OpenCV at 30+ FPS (~80% less logging time)', link: ['#projects', 'Open the projects'] },
