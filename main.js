@@ -195,16 +195,55 @@
 
   // The contact form uses the visitor's email app, so it works without a backend.
   const contactForm = $('#contactForm');
-  contactForm?.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const formData = new FormData(contactForm);
+  // Contact form → Netlify Forms (submissions appear in Netlify → Forms and are emailed to Abdul).
+  // If the request fails (offline, or opened from a local file), fall back to the visitor's email app.
+  const contactStatus = $('#contactStatus');
+  const contactSubmit = $('#contactSubmit');
+  const setStatus = (text, state) => {
+    if (!contactStatus) return;
+    contactStatus.textContent = text;
+    contactStatus.dataset.state = state;
+  };
+  const mailtoFallback = (formData) => {
     const name = String(formData.get('name') || '').trim();
     const email = String(formData.get('email') || '').trim();
     const subject = String(formData.get('subject') || '').trim() || 'Portfolio enquiry';
     const message = String(formData.get('message') || '').trim();
     const body = `${message}\n\n— ${name}\n${email}`;
     window.location.href = `mailto:f23ari02@aror.edu.pk?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+  contactForm?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!contactForm.reportValidity()) return;
+    const formData = new FormData(contactForm);
+    if (String(formData.get('bot-field') || '')) return; // honeypot: silently drop bots
+    if (!String(formData.get('subject') || '').trim()) formData.set('subject', 'Portfolio enquiry');
+
+    contactSubmit?.setAttribute('disabled', '');
+    contactForm.setAttribute('aria-busy', 'true');
+    setStatus('Sending your message…', 'pending');
+    try {
+      if (location.protocol === 'file:') throw new Error('local file');
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'text/html' },
+        body: new URLSearchParams(formData).toString(),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      contactForm.reset();
+      setStatus('✓ Thanks! Your message was sent — Abdul will reply soon.', 'success');
+      document.dispatchEvent(new CustomEvent('portfolio:celebrate'));
+    } catch (err) {
+      setStatus('Couldn’t send from here, so your email app is opening with the message ready instead.', 'error');
+      mailtoFallback(formData);
+    } finally {
+      contactSubmit?.removeAttribute('disabled');
+      contactForm.removeAttribute('aria-busy');
+    }
   });
+  if (new URLSearchParams(location.search).has('sent')) {
+    setStatus('✓ Thanks! Your message was sent — Abdul will reply soon.', 'success');
+  }
 
   const year = $('#year');
   if (year) year.textContent = String(new Date().getFullYear());
